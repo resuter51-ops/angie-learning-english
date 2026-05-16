@@ -4,8 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="google" content="notranslate"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="apple-mobile-web-app-capable" content="yes"/>
-<title>Angie's Learning English</title>
+<title>Angie's English</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
@@ -20,16 +19,77 @@ body {
   padding: 20px; text-align: center;
   border-bottom: 1px solid rgba(255,255,255,0.15);
 }
-.header h1 { font-size: 1.6rem; font-weight: 900; margin-bottom: 4px; }
-.header p { color: rgba(255,255,255,0.7); font-size: 0.85rem; }
-.progress-bar-wrap { background: rgba(255,255,255,0.15); border-radius: 20px; height: 8px; margin: 12px 0 4px; }
-.progress-bar-fill { height: 8px; border-radius: 20px; background: linear-gradient(90deg, #f39c12, #e67e22); transition: width 0.5s; }
-.progress-label { font-size: 0.75rem; color: rgba(255,255,255,0.6); }
-
+.header h1 { font-size: 1.8rem; font-weight: 900; margin-bottom: 4px; }
+.header .subtitle { color: rgba(255,255,255,0.75); font-size: 0.9rem; margin-bottom: 2px; }
+.header .subtitle2 { color: rgba(255,255,255,0.5); font-size: 0.8rem; }
 .main { max-width: 480px; margin: 0 auto; padding: 20px 16px; }
 
-/* LESSON LIST */
-#lesson-list .lesson-card {
+/* ── HOME SCREEN ── */
+.home-label { font-size: 1rem; font-weight: 700; color: rgba(255,255,255,0.7); margin-bottom: 16px; text-align: center; }
+.menu-card {
+  background: rgba(255,255,255,0.09);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 18px; padding: 18px 20px;
+  margin-bottom: 14px; cursor: pointer;
+  display: flex; align-items: center; gap: 16px;
+  transition: all 0.2s;
+}
+.menu-card:hover, .menu-card:active { background: rgba(255,255,255,0.18); transform: scale(1.01); }
+.menu-icon { font-size: 2rem; flex-shrink: 0; }
+.menu-text { flex: 1; }
+.menu-title-es { font-size: 1.1rem; font-weight: 800; margin-bottom: 2px; }
+.menu-title-en { font-size: 0.82rem; color: rgba(255,255,255,0.55); margin-bottom: 4px; }
+.menu-desc { font-size: 0.78rem; color: rgba(255,255,255,0.5); }
+.menu-arrow { font-size: 1.3rem; color: rgba(255,255,255,0.4); flex-shrink: 0; }
+.home-footer { text-align: center; color: rgba(255,255,255,0.45); font-size: 0.82rem; margin-top: 20px; }
+
+/* ── BACK BTN ── */
+.back-btn {
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+  color: white; border-radius: 20px; padding: 8px 18px;
+  font-size: 0.85rem; cursor: pointer; margin-bottom: 18px;
+  display: inline-block;
+}
+.section-title { font-size: 1.3rem; font-weight: 900; margin-bottom: 4px; }
+.section-sub { color: rgba(255,255,255,0.55); font-size: 0.85rem; margin-bottom: 20px; }
+
+/* ── TRANSLATOR ── */
+.trans-box {
+  background: rgba(255,255,255,0.97); color: #1a1a2e;
+  border-radius: 16px; padding: 18px; margin-bottom: 14px;
+}
+.trans-box label { font-size: 0.8rem; font-weight: 700; color: #555; display: block; margin-bottom: 6px; }
+.trans-box textarea {
+  width: 100%; border: 1px solid #ddd; border-radius: 10px;
+  padding: 10px; font-size: 1rem; resize: none; font-family: inherit;
+  min-height: 80px; color: #1a1a2e;
+}
+.trans-box textarea:focus { outline: none; border-color: #0f3460; }
+.trans-result {
+  margin-top: 10px; padding: 12px; background: #f0f4ff;
+  border-radius: 10px; font-size: 1rem; font-weight: 700; color: #0f3460;
+  min-height: 44px; word-break: break-word;
+}
+.trans-btn {
+  width: 100%; padding: 14px; border: none; border-radius: 12px;
+  background: linear-gradient(135deg, #0f3460, #533483);
+  color: white; font-size: 1rem; font-weight: 800; cursor: pointer; margin-top: 10px;
+}
+.dir-toggle {
+  display: flex; gap: 8px; margin-bottom: 14px;
+}
+.dir-btn {
+  flex: 1; padding: 10px; border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 12px; background: rgba(255,255,255,0.08);
+  color: white; font-size: 0.85rem; font-weight: 700; cursor: pointer;
+}
+.dir-btn.active { background: rgba(255,255,255,0.25); border-color: white; }
+
+/* ── SENTENCES ── */
+.progress-bar-wrap { background: rgba(255,255,255,0.15); border-radius: 20px; height: 8px; margin: 0 0 6px; }
+.progress-bar-fill { height: 8px; border-radius: 20px; background: linear-gradient(90deg, #f39c12, #e67e22); transition: width 0.5s; }
+.progress-label { font-size: 0.75rem; color: rgba(255,255,255,0.6); margin-bottom: 16px; }
+.lesson-card {
   background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,0.15);
   border-radius: 16px; padding: 16px 18px;
@@ -37,9 +97,9 @@ body {
   display: flex; align-items: center; gap: 14px;
   transition: all 0.2s;
 }
-#lesson-list .lesson-card:hover { background: rgba(255,255,255,0.14); }
-#lesson-list .lesson-card.locked { opacity: 0.4; cursor: not-allowed; }
-#lesson-list .lesson-card.done { border-color: #2ecc71; }
+.lesson-card:hover { background: rgba(255,255,255,0.14); }
+.lesson-card.locked { opacity: 0.4; cursor: not-allowed; }
+.lesson-card.done { border-color: #2ecc71; }
 .lesson-num {
   width: 42px; height: 42px; border-radius: 50%;
   background: rgba(255,255,255,0.15);
@@ -52,17 +112,15 @@ body {
 .lesson-info p { font-size: 0.78rem; color: rgba(255,255,255,0.6); }
 .lesson-badge { margin-left: auto; font-size: 1.2rem; flex-shrink: 0; }
 
-/* LESSON VIEW */
-#lesson-view { display: none; }
-.back-btn {
-  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
-  color: white; border-radius: 20px; padding: 8px 18px;
-  font-size: 0.85rem; cursor: pointer; margin-bottom: 18px;
+/* ── LESSON VIEW ── */
+.tab-row { display: flex; gap: 8px; margin-bottom: 18px; }
+.tab-btn {
+  flex: 1; padding: 10px; border: 2px solid rgba(255,255,255,0.2);
+  border-radius: 12px; background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.7); font-size: 0.85rem; font-weight: 700;
+  cursor: pointer; transition: all 0.2s;
 }
-.lesson-title { font-size: 1.3rem; font-weight: 900; margin-bottom: 4px; }
-.lesson-subtitle { color: rgba(255,255,255,0.6); font-size: 0.85rem; margin-bottom: 20px; }
-
-/* PHRASES */
+.tab-btn.active { background: rgba(255,255,255,0.22); border-color: white; color: white; }
 .phrase-card {
   background: rgba(255,255,255,0.97); color: #1a1a2e;
   border-radius: 16px; padding: 16px 18px; margin-bottom: 12px;
@@ -76,8 +134,15 @@ body {
   padding: 6px 16px; font-size: 0.8rem; cursor: pointer;
   margin-top: 8px; font-weight: 700;
 }
+.fav-btn {
+  background: rgba(243,156,18,0.15); border: 1px solid #f39c12;
+  color: #f39c12; border-radius: 20px;
+  padding: 6px 14px; font-size: 0.8rem; cursor: pointer;
+  margin-top: 8px; margin-left: 6px; font-weight: 700;
+}
+.fav-btn.saved { background: #f39c12; color: white; }
 
-/* QUIZ */
+/* ── QUIZ ── */
 .quiz-card {
   background: rgba(255,255,255,0.97); color: #1a1a2e;
   border-radius: 18px; padding: 22px 18px; margin-bottom: 16px;
@@ -96,54 +161,137 @@ body {
 .quiz-feedback { font-size: 0.9rem; font-weight: 700; margin-top: 10px; padding: 8px 12px; border-radius: 10px; }
 .quiz-feedback.ok { background: #f0fff4; color: #1a6b3a; }
 .quiz-feedback.bad { background: #fff0f0; color: #c0392b; }
-
 .next-btn {
-  width: 100%; padding: 14px;
+  width: 100%; padding: 14px; border: none; border-radius: 12px;
   background: linear-gradient(135deg, #0f3460, #533483);
-  color: white; border: none; border-radius: 14px;
-  font-size: 1rem; font-weight: 800; cursor: pointer; margin-top: 8px;
+  color: white; font-size: 1rem; font-weight: 800; cursor: pointer; margin-top: 8px;
 }
-.score-display {
-  text-align: center; padding: 16px;
-  font-size: 0.95rem; color: rgba(255,255,255,0.8);
-  margin-bottom: 8px;
-}
-.complete-card {
+.quiz-done {
   background: rgba(255,255,255,0.97); color: #1a1a2e;
-  border-radius: 18px; padding: 28px 22px; text-align: center;
+  border-radius: 18px; padding: 30px 20px; text-align: center;
 }
-.complete-card h2 { font-size: 1.4rem; font-weight: 900; color: #0f3460; margin-bottom: 8px; }
-.complete-card p { color: #555; font-size: 0.95rem; margin-bottom: 18px; }
-.tab-row { display: flex; gap: 8px; margin-bottom: 18px; }
-.tab-btn {
-  flex: 1; padding: 10px; border: none; border-radius: 12px;
-  font-weight: 700; font-size: 0.9rem; cursor: pointer;
-  background: rgba(255,255,255,0.15); color: white;
+.quiz-done h2 { font-size: 1.5rem; font-weight: 900; margin-bottom: 8px; color: #0f3460; }
+.quiz-done p { font-size: 1rem; color: #555; margin-bottom: 20px; }
+.quiz-score { font-size: 2.5rem; font-weight: 900; color: #0f3460; margin: 10px 0; }
+.pass-msg { color: #2ecc71; font-weight: 800; font-size: 1rem; }
+.fail-msg { color: #e74c3c; font-weight: 800; font-size: 1rem; }
+
+/* ── FRASES DEL DIA ── */
+.daily-cat {
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 14px; padding: 14px 16px; margin-bottom: 12px;
 }
-.tab-btn.active { background: white; color: #0f3460; }
+.daily-cat-title { font-size: 0.95rem; font-weight: 800; margin-bottom: 10px; color: #f39c12; }
+.daily-phrase {
+  background: rgba(255,255,255,0.95); color: #1a1a2e;
+  border-radius: 10px; padding: 10px 14px; margin-bottom: 8px;
+}
+.daily-phrase .en { font-weight: 800; font-size: 0.95rem; color: #0f3460; }
+.daily-phrase .es { font-size: 0.82rem; color: #555; margin-top: 2px; }
+.daily-phrase .pron { font-size: 0.75rem; color: #888; font-style: italic; margin-top: 2px; }
+.daily-phrase-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.daily-phrase-text { flex: 1; }
+
+/* ── FAVORITOS ── */
+.fav-empty { text-align: center; color: rgba(255,255,255,0.45); padding: 40px 20px; font-size: 0.95rem; }
+.fav-item {
+  background: rgba(255,255,255,0.97); color: #1a1a2e;
+  border-radius: 14px; padding: 14px 16px; margin-bottom: 10px;
+  display: flex; align-items: center; gap: 12px;
+}
+.fav-item-text { flex: 1; }
+.fav-item .en { font-weight: 800; font-size: 0.95rem; color: #0f3460; }
+.fav-item .es { font-size: 0.82rem; color: #555; margin-top: 2px; }
+.fav-remove {
+  background: none; border: 1px solid #e74c3c; color: #e74c3c;
+  border-radius: 20px; padding: 5px 12px; font-size: 0.78rem; cursor: pointer; flex-shrink: 0;
+}
 </style>
 </head>
 <body>
-
 <div class="header">
-  <div style="font-size:2rem;margin-bottom:6px">📚</div>
-  <h1>Angie's Learning English</h1>
-  <p>Aprende inglés paso a paso • Learn English step by step</p>
-  <div class="progress-bar-wrap">
-    <div class="progress-bar-fill" id="total-bar" style="width:0%"></div>
-  </div>
-  <div class="progress-label" id="total-label">0 de 20 lecciones completadas</div>
+  <div style="font-size:2rem;">🦋</div>
+  <h1>Angie's English</h1>
+  <div class="subtitle">¡Aprende inglés fácil!</div>
+  <div class="subtitle2">Learn English step by step</div>
 </div>
-
 <div class="main">
-  <!-- LESSON LIST -->
-  <div id="lesson-list"></div>
+
+  <!-- HOME -->
+  <div id="screen-home">
+    <div class="home-label">¿Qué quieres hacer? / What do you want to do?</div>
+    <div class="menu-card" onclick="showScreen('translator')">
+      <div class="menu-icon">🔤</div>
+      <div class="menu-text">
+        <div class="menu-title-es">Traductor</div>
+        <div class="menu-title-en">Translator</div>
+        <div class="menu-desc">Escribe una palabra en español → obtén inglés</div>
+      </div>
+      <div class="menu-arrow">›</div>
+    </div>
+    <div class="menu-card" onclick="showScreen('sentences')">
+      <div class="menu-icon">📝</div>
+      <div class="menu-text">
+        <div class="menu-title-es">Aprende Oraciones</div>
+        <div class="menu-title-en">Learn Sentences</div>
+        <div class="menu-desc">De español a inglés, paso a paso</div>
+      </div>
+      <div class="menu-arrow">›</div>
+    </div>
+    <div class="menu-card" onclick="showScreen('daily')">
+      <div class="menu-icon">🌟</div>
+      <div class="menu-text">
+        <div class="menu-title-es">Frases del Día</div>
+        <div class="menu-title-en">Daily Phrases</div>
+        <div class="menu-desc">Saludos y trabajo — frases esenciales</div>
+      </div>
+      <div class="menu-arrow">›</div>
+    </div>
+    <div class="menu-card" onclick="showScreen('favorites')">
+      <div class="menu-icon">⭐</div>
+      <div class="menu-text">
+        <div class="menu-title-es">Mis Favoritos</div>
+        <div class="menu-title-en">My Favorites</div>
+        <div class="menu-desc">Palabras que guardé para practicar</div>
+      </div>
+      <div class="menu-arrow">›</div>
+    </div>
+    <div class="home-footer">💪 Cada día un poco más / A little more each day</div>
+  </div>
+
+  <!-- TRANSLATOR -->
+  <div id="screen-translator" style="display:none">
+    <button class="back-btn" onclick="showScreen('home')">← Inicio</button>
+    <div class="section-title">🔤 Traductor</div>
+    <div class="section-sub">Escribe en español o inglés</div>
+    <div class="dir-toggle">
+      <button class="dir-btn active" id="dir-es" onclick="setDir('es-en')">🇪🇸 Español → 🇺🇸 English</button>
+      <button class="dir-btn" id="dir-en" onclick="setDir('en-es')">🇺🇸 English → 🇪🇸 Español</button>
+    </div>
+    <div class="trans-box">
+      <label id="trans-label-in">Escribe en español:</label>
+      <textarea id="trans-input" placeholder="Escribe aquí..." rows="3"></textarea>
+      <button class="trans-btn" onclick="doTranslate()">🔄 Traducir</button>
+      <label style="margin-top:14px;" id="trans-label-out">Traducción en inglés:</label>
+      <div class="trans-result" id="trans-result">—</div>
+      <button class="speak-btn" style="margin-top:10px;" onclick="speakResult()">🔊 Escuchar</button>
+    </div>
+  </div>
+
+  <!-- SENTENCES (Lesson List) -->
+  <div id="screen-sentences" style="display:none">
+    <button class="back-btn" onclick="showScreen('home')">← Inicio</button>
+    <div class="section-title">📝 Aprende Oraciones</div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="total-bar" style="width:0%"></div></div>
+    <div class="progress-label" id="total-label">0 de 20 lecciones completadas</div>
+    <div id="lesson-list"></div>
+  </div>
 
   <!-- LESSON VIEW -->
-  <div id="lesson-view">
-    <button class="back-btn" onclick="showList()">← Volver a las lecciones</button>
-    <div class="lesson-title" id="lv-title"></div>
-    <div class="lesson-subtitle" id="lv-subtitle"></div>
+  <div id="screen-lesson" style="display:none">
+    <button class="back-btn" onclick="showScreen('sentences')">← Lecciones</button>
+    <div class="section-title" id="lv-title"></div>
+    <div class="section-sub" id="lv-subtitle"></div>
     <div class="tab-row">
       <button class="tab-btn active" id="tab-learn" onclick="setTab('learn')">📖 Aprender</button>
       <button class="tab-btn" id="tab-quiz" onclick="setTab('quiz')">✏️ Practicar</button>
@@ -151,413 +299,431 @@ body {
     <div id="learn-section"></div>
     <div id="quiz-section" style="display:none"></div>
   </div>
+
+  <!-- DAILY PHRASES -->
+  <div id="screen-daily" style="display:none">
+    <button class="back-btn" onclick="showScreen('home')">← Inicio</button>
+    <div class="section-title">🌟 Frases del Día</div>
+    <div class="section-sub">Saludos y trabajo — frases esenciales</div>
+    <div id="daily-content"></div>
+  </div>
+
+  <!-- FAVORITES -->
+  <div id="screen-favorites" style="display:none">
+    <button class="back-btn" onclick="showScreen('home')">← Inicio</button>
+    <div class="section-title">⭐ Mis Favoritos</div>
+    <div class="section-sub">Frases que guardaste para practicar</div>
+    <div id="fav-content"></div>
+  </div>
+
 </div>
 
 <script>
-// ── LESSON DATA ──────────────────────────────────────────
-const LESSONS = [
+// ── DAILY PHRASES DATA ────────────────────────────────────
+const DAILY = [
   {
-    id: 1,
-    title: "Saludos básicos",
-    titleEn: "Basic Greetings",
-    desc: "Hola, adiós, por favor, gracias",
+    cat: "☀️ Saludos / Greetings",
     phrases: [
       { en: "Good morning!", es: "¡Buenos días!", pron: "Gud MOR-ning" },
       { en: "Good afternoon!", es: "¡Buenas tardes!", pron: "Gud AF-ter-noon" },
-      { en: "Good evening!", es: "¡Buenas noches!", pron: "Gud EEV-ning" },
-      { en: "Hello! How are you?", es: "¡Hola! ¿Cómo estás?", pron: "Heh-LOH, hao ar yoo" },
-      { en: "I'm fine, thank you.", es: "Estoy bien, gracias.", pron: "Aim fain, ZANK yoo" },
-      { en: "Goodbye! See you later.", es: "¡Adiós! Hasta luego.", pron: "Gud-BAI, si yoo LAY-ter" },
-      { en: "Please.", es: "Por favor.", pron: "Pliz" },
-      { en: "Thank you very much.", es: "Muchas gracias.", pron: "ZANK yoo VEH-ri mach" },
-      { en: "You're welcome.", es: "De nada.", pron: "Yor WEL-kom" },
-      { en: "Excuse me.", es: "Perdón / Con permiso.", pron: "Eks-KYOOZ mi" }
-    ],
-    quiz: [
-      { q: "¿Cómo se dice 'Buenos días' en inglés?", opts: ["Good morning!", "Good evening!", "Good night!", "Hello!"], ans: 0 },
-      { q: "¿Qué significa 'You're welcome'?", opts: ["Por favor", "De nada", "Gracias", "Hola"], ans: 1 },
-      { q: "¿Cómo se dice 'Muchas gracias'?", opts: ["Please", "Excuse me", "Thank you very much", "Goodbye"], ans: 2 },
-      { q: "'Good evening' se usa cuando...?", opts: ["En la mañana", "En la tarde temprano", "En la noche", "Al mediodía"], ans: 2 },
-      { q: "¿Cómo preguntas '¿Cómo estás?' en inglés?", opts: ["How old are you?", "How are you?", "Where are you?", "Who are you?"], ans: 1 }
+      { en: "Good evening!", es: "¡Buenas noches!", pron: "Gud IIV-ning" },
+      { en: "How are you?", es: "¿Cómo estás?", pron: "Jao ar yoo" },
+      { en: "I'm fine, thank you!", es: "¡Estoy bien, gracias!", pron: "Aim fain, ZANK yoo" },
+      { en: "Nice to meet you!", es: "¡Mucho gusto!", pron: "Nais tu miit yoo" },
+      { en: "See you later!", es: "¡Hasta luego!", pron: "Sii yoo LEI-ter" },
+      { en: "Have a good day!", es: "¡Que tenga buen día!", pron: "Jav a gud dei" }
     ]
   },
   {
-    id: 2,
-    title: "En el trabajo",
-    titleEn: "At Work",
+    cat: "💼 En el trabajo / At Work",
+    phrases: [
+      { en: "I'm ready to work.", es: "Estoy lista para trabajar.", pron: "Aim REH-di tu werk" },
+      { en: "Where do I start?", es: "¿Por dónde empiezo?", pron: "Wer doo ai start" },
+      { en: "I need help, please.", es: "Necesito ayuda, por favor.", pron: "Ai niid jelp, pliiz" },
+      { en: "I'm on my break.", es: "Estoy en mi descanso.", pron: "Aim on mai breik" },
+      { en: "I finished my tasks.", es: "Terminé mis tareas.", pron: "Ai FIN-isht mai tasks" },
+      { en: "I will be late today.", es: "Llegaré tarde hoy.", pron: "Ai wil bi leit tuh-DAI" },
+      { en: "Can I take my break now?", es: "¿Puedo tomar mi descanso ahora?", pron: "Kan ai teik mai breik naow" },
+      { en: "I need to speak with my supervisor.", es: "Necesito hablar con mi supervisora.", pron: "Ai niid tu spiik wid mai soo-per-VAI-zer" }
+    ]
+  },
+  {
+    cat: "🏥 Con los residentes / With Residents",
+    phrases: [
+      { en: "How are you feeling?", es: "¿Cómo se siente?", pron: "Jao ar yoo FIL-ing" },
+      { en: "Are you comfortable?", es: "¿Está cómodo/a?", pron: "Ar yoo COM-for-ta-bol" },
+      { en: "Do you need anything?", es: "¿Necesita algo?", pron: "Doo yoo niid EH-ni-zing" },
+      { en: "I'm here to help you.", es: "Estoy aquí para ayudarle.", pron: "Aim jir tu jelp yoo" },
+      { en: "I will call the nurse.", es: "Voy a llamar a la enfermera.", pron: "Ai wil kol de ners" },
+      { en: "Your room is clean.", es: "Su cuarto está limpio.", pron: "Yor room iz klin" },
+      { en: "Please wait a moment.", es: "Por favor espere un momento.", pron: "Pliiz weit a MO-ment" },
+      { en: "Have a wonderful day!", es: "¡Que tenga un día maravilloso!", pron: "Jav a WON-der-ful dei" }
+    ]
+  },
+  {
+    cat: "🚨 Emergencias / Emergencies",
+    phrases: [
+      { en: "Call 911!", es: "¡Llama al 911!", pron: "Kol nain-wun-wun" },
+      { en: "I need a nurse right away.", es: "Necesito una enfermera ahora mismo.", pron: "Ai niid a ners rait ah-WEI" },
+      { en: "Are you okay?", es: "¿Está bien?", pron: "Ar yoo oh-KEI" },
+      { en: "Don't move!", es: "¡No se mueva!", pron: "Dont moov" },
+      { en: "Help! Emergency!", es: "¡Ayuda! ¡Emergencia!", pron: "Jelp! Ih-MER-jen-si" }
+    ]
+  }
+];
+
+// ── LESSONS DATA ──────────────────────────────────────────
+const LESSONS = [
+  {
+    id: 1, title: "Saludos básicos", titleEn: "Basic Greetings",
+    desc: "Hola, adiós, por favor, gracias",
+    phrases: [
+      { en: "Hello!", es: "¡Hola!", pron: "Jeh-LOH" },
+      { en: "Good morning!", es: "¡Buenos días!", pron: "Gud MOR-ning" },
+      { en: "Good afternoon!", es: "¡Buenas tardes!", pron: "Gud AF-ter-noon" },
+      { en: "Goodbye!", es: "¡Adiós!", pron: "Gud-BAI" },
+      { en: "Please.", es: "Por favor.", pron: "Pliiz" },
+      { en: "Thank you!", es: "¡Gracias!", pron: "ZANK yoo" },
+      { en: "You're welcome!", es: "¡De nada!", pron: "Yor WEL-kom" },
+      { en: "Excuse me.", es: "Con permiso / Disculpe.", pron: "Eks-KYOOZ mi" },
+      { en: "I'm sorry.", es: "Lo siento.", pron: "Aim SOR-ri" },
+      { en: "Yes / No.", es: "Sí / No.", pron: "Jes / Noh" }
+    ],
+    quiz: [
+      { q: "¿Cómo dices 'Buenos días'?", opts: ["Good night", "Good morning", "Good afternoon", "Hello"], ans: 1 },
+      { q: "'Thank you' significa...?", opts: ["Por favor", "De nada", "Gracias", "Disculpe"], ans: 2 },
+      { q: "¿Cómo dices 'De nada'?", opts: ["Please", "You're welcome", "I'm sorry", "Goodbye"], ans: 1 },
+      { q: "'Excuse me' significa...?", opts: ["Lo siento", "Hola", "Con permiso", "Adiós"], ans: 2 },
+      { q: "¿Cómo dices 'Adiós'?", opts: ["Hello", "Good morning", "Goodbye", "Please"], ans: 2 }
+    ]
+  },
+  {
+    id: 2, title: "En el trabajo", titleEn: "At Work",
     desc: "Frases esenciales para el trabajo diario",
     phrases: [
-      { en: "I need help, please.", es: "Necesito ayuda, por favor.", pron: "Ai nid jelp, pliz" },
-      { en: "Where is the supply room?", es: "¿Dónde está el cuarto de suministros?", pron: "Wer iz de suh-PLAI room" },
-      { en: "I will be right back.", es: "Regreso enseguida.", pron: "Ai wil bi rait bak" },
-      { en: "Can you help me?", es: "¿Me puedes ayudar?", pron: "Kan yoo jelp mi" },
+      { en: "I'm ready.", es: "Estoy lista.", pron: "Aim REH-di" },
+      { en: "I need help.", es: "Necesito ayuda.", pron: "Ai niid jelp" },
+      { en: "Where is it?", es: "¿Dónde está?", pron: "Wer iz it" },
       { en: "I don't understand.", es: "No entiendo.", pron: "Ai dont un-der-STAND" },
-      { en: "Can you repeat that?", es: "¿Puedes repetir eso?", pron: "Kan yoo ri-PIT dat" },
-      { en: "I'm finished with this room.", es: "Terminé con este cuarto.", pron: "Aim FIN-isht wid dis room" },
-      { en: "I need more towels.", es: "Necesito más toallas.", pron: "Ai nid mor TAO-els" },
-      { en: "This is clean.", es: "Esto está limpio.", pron: "Dis iz klin" },
-      { en: "I'm on my break.", es: "Estoy en mi descanso.", pron: "Aim on mai braik" }
+      { en: "Can you repeat?", es: "¿Puede repetir?", pron: "Kan yoo ri-PIT" },
+      { en: "Just a moment.", es: "Un momento.", pron: "Jast a MO-ment" },
+      { en: "I'm finished.", es: "Terminé.", pron: "Aim FIN-isht" },
+      { en: "I'm on my break.", es: "Estoy en mi descanso.", pron: "Aim on mai breik" }
     ],
     quiz: [
-      { q: "¿Cómo dices 'No entiendo' en inglés?", opts: ["I don't know", "I don't understand", "I can't hear", "I'm sorry"], ans: 1 },
-      { q: "¿Qué significa 'I will be right back'?", opts: ["Voy al baño", "Regreso enseguida", "Estoy ocupada", "No puedo"], ans: 1 },
-      { q: "¿Cómo pides ayuda en inglés?", opts: ["I need help, please.", "I need water.", "Where is the exit?", "Thank you."], ans: 0 },
-      { q: "'Can you repeat that?' significa...?", opts: ["¿Puedes ayudarme?", "¿Puedes repetir eso?", "¿Dónde estás?", "¿Cómo te llamas?"], ans: 1 },
-      { q: "¿Cómo dices 'Terminé con este cuarto'?", opts: ["I'm on my break.", "I need more towels.", "I'm finished with this room.", "This is clean."], ans: 2 }
+      { q: "'I need help' significa...?", opts: ["Estoy lista", "Necesito ayuda", "No entiendo", "Terminé"], ans: 1 },
+      { q: "¿Cómo dices 'No entiendo'?", opts: ["I'm ready", "Just a moment", "I don't understand", "Can you repeat?"], ans: 2 },
+      { q: "'I'm finished' significa...?", opts: ["Estoy cansada", "Estoy lista", "Terminé", "Necesito ayuda"], ans: 2 },
+      { q: "¿Cómo preguntas '¿Dónde está?'?", opts: ["What is it?", "Where is it?", "When is it?", "Who is it?"], ans: 1 },
+      { q: "'Can you repeat?' significa...?", opts: ["¿Puede ayudar?", "¿Puede esperar?", "¿Puede repetir?", "¿Puede venir?"], ans: 2 }
     ]
   },
   {
-    id: 3,
-    title: "Hablando con residentes",
-    titleEn: "Talking to Residents",
+    id: 3, title: "Hablando con residentes", titleEn: "Talking to Residents",
     desc: "Frases amables para comunicarte con los residentes",
     phrases: [
-      { en: "Good morning! How are you feeling today?", es: "¡Buenos días! ¿Cómo se siente hoy?", pron: "Gud MOR-ning, hao ar yoo FIL-ing tuh-DAI" },
-      { en: "Can I get you anything?", es: "¿Le puedo traer algo?", pron: "Kan ai get yoo EH-ni-zing" },
-      { en: "Your room will be ready soon.", es: "Su cuarto estará listo pronto.", pron: "Yor room wil bi REH-di soon" },
-      { en: "Is the temperature okay?", es: "¿Está bien la temperatura?", pron: "Iz de TEM-pra-cher OH-kei" },
-      { en: "I'm here to clean your room.", es: "Estoy aquí para limpiar su cuarto.", pron: "Aim jir tu klin yor room" },
-      { en: "Do you need anything before I leave?", es: "¿Necesita algo antes de que me vaya?", pron: "Doo yoo nid EH-ni-zing bih-FOR ai liv" },
-      { en: "Have a nice day!", es: "¡Que tenga un buen día!", pron: "Jav a nais dei" },
-      { en: "I'll be back tomorrow.", es: "Regreso mañana.", pron: "Ail bi bak tuh-MOR-oh" },
-      { en: "Let me know if you need anything.", es: "Avíseme si necesita algo.", pron: "Let mi noh if yoo nid EH-ni-zing" },
-      { en: "You're looking well today!", es: "¡Se ve muy bien hoy!", pron: "Yor LUK-ing wel tuh-DAI" }
+      { en: "How are you feeling?", es: "¿Cómo se siente?", pron: "Jao ar yoo FIL-ing" },
+      { en: "Are you comfortable?", es: "¿Está cómodo/a?", pron: "Ar yoo COM-for-ta-bol" },
+      { en: "Do you need anything?", es: "¿Necesita algo?", pron: "Doo yoo niid EH-ni-zing" },
+      { en: "I'm here to help you.", es: "Estoy aquí para ayudarle.", pron: "Aim jir tu jelp yoo" },
+      { en: "I will call the nurse.", es: "Voy a llamar a la enfermera.", pron: "Ai wil kol de ners" },
+      { en: "Your room is clean.", es: "Su cuarto está limpio.", pron: "Yor room iz klin" },
+      { en: "Please wait a moment.", es: "Por favor espere un momento.", pron: "Pliiz weit a MO-ment" },
+      { en: "Have a wonderful day!", es: "¡Que tenga un día maravilloso!", pron: "Jav a WON-der-ful dei" }
     ],
     quiz: [
-      { q: "¿Cómo ofreces ayuda a un residente?", opts: ["Have a nice day!", "Can I get you anything?", "I'll be back tomorrow.", "This is clean."], ans: 1 },
-      { q: "'Have a nice day' significa...?", opts: ["Buenas noches", "Hasta luego", "Que tenga un buen día", "Regreso mañana"], ans: 2 },
-      { q: "¿Cómo dices que vas a limpiar el cuarto?", opts: ["I'm here to clean your room.", "I need help.", "Can you repeat that?", "I'm on my break."], ans: 0 },
-      { q: "'I'll be back tomorrow' significa...?", opts: ["Regreso ahora", "Regreso mañana", "Estoy aquí", "Me voy"], ans: 1 },
-      { q: "¿Cómo preguntas si la temperatura está bien?", opts: ["Are you okay?", "Is the room clean?", "Is the temperature okay?", "Do you need water?"], ans: 2 }
+      { q: "'How are you feeling?' significa...?", opts: ["¿Cómo estás?", "¿Cómo se siente?", "¿Necesita algo?", "¿Está cómoda?"], ans: 1 },
+      { q: "¿Cómo dices 'Estoy aquí para ayudarle'?", opts: ["I need your help.", "I will call the nurse.", "I'm here to help you.", "Please wait."], ans: 2 },
+      { q: "'Your room is clean' significa...?", opts: ["Su cuarto necesita limpieza", "Su cuarto está listo", "Su cuarto está limpio", "Su cuarto está ocupado"], ans: 2 },
+      { q: "¿Cómo dices 'Voy a llamar a la enfermera'?", opts: ["I need a nurse.", "I will call the nurse.", "The nurse is here.", "Call the nurse!"], ans: 1 },
+      { q: "'Do you need anything?' significa...?", opts: ["¿Cómo estás?", "¿Está cómoda?", "¿Necesita algo?", "¿Puede esperar?"], ans: 2 }
     ]
   },
   {
-    id: 4,
-    title: "Números y tiempo",
-    titleEn: "Numbers & Time",
-    desc: "Números del 1 al 20 y expresiones de tiempo",
+    id: 4, title: "Números y tiempo", titleEn: "Numbers & Time",
+    desc: "Números del 1 al 10 y expresiones de tiempo",
     phrases: [
-      { en: "One, two, three, four, five", es: "Uno, dos, tres, cuatro, cinco", pron: "Wan, too, zri, for, faiv" },
-      { en: "Six, seven, eight, nine, ten", es: "Seis, siete, ocho, nueve, diez", pron: "Siks, SEV-en, eit, nain, ten" },
+      { en: "One, Two, Three", es: "Uno, Dos, Tres", pron: "Wan, Tuu, Zrii" },
+      { en: "Four, Five, Six", es: "Cuatro, Cinco, Seis", pron: "For, Faiv, Siks" },
+      { en: "Seven, Eight, Nine, Ten", es: "Siete, Ocho, Nueve, Diez", pron: "SEV-en, Eit, Naiv, Ten" },
       { en: "What time is it?", es: "¿Qué hora es?", pron: "Wat taim iz it" },
-      { en: "It's eight o'clock.", es: "Son las ocho.", pron: "Its eit oh-KLOK" },
-      { en: "It's half past two.", es: "Son las dos y media.", pron: "Its jaf past too" },
-      { en: "In the morning", es: "En la mañana", pron: "In de MOR-ning" },
-      { en: "In the afternoon", es: "En la tarde", pron: "In de AF-ter-noon" },
-      { en: "At night", es: "En la noche", pron: "At nait" },
-      { en: "Today, tomorrow, yesterday", es: "Hoy, mañana, ayer", pron: "Tuh-DAI, tuh-MOR-oh, YES-ter-dei" },
-      { en: "Every day", es: "Todos los días", pron: "EV-ri dei" }
+      { en: "It's 8 o'clock.", es: "Son las 8 en punto.", pron: "Its eit oh-KLOK" },
+      { en: "In the morning.", es: "Por la mañana.", pron: "In de MOR-ning" },
+      { en: "In the afternoon.", es: "Por la tarde.", pron: "In de AF-ter-noon" },
+      { en: "At night.", es: "Por la noche.", pron: "At nait" }
     ],
     quiz: [
-      { q: "¿Cómo se dice 'ocho' en inglés?", opts: ["Six", "Seven", "Eight", "Nine"], ans: 2 },
-      { q: "'What time is it?' significa...?", opts: ["¿Dónde estás?", "¿Qué hora es?", "¿Cómo estás?", "¿Qué necesitas?"], ans: 1 },
-      { q: "¿Cómo dices 'mañana' (el día siguiente)?", opts: ["Today", "Yesterday", "Tomorrow", "Every day"], ans: 2 },
-      { q: "'It's half past two' significa...?", opts: ["Son las dos", "Son las dos y cuarto", "Son las dos y media", "Son las tres"], ans: 2 },
-      { q: "¿Cuánto es 'five' + 'four'?", opts: ["Eight", "Nine", "Ten", "Seven"], ans: 1 }
+      { q: "¿Cómo se dice 'Cinco' en inglés?", opts: ["Four", "Six", "Five", "Seven"], ans: 2 },
+      { q: "'What time is it?' significa...?", opts: ["¿Qué día es?", "¿Qué hora es?", "¿Cuánto cuesta?", "¿Dónde estás?"], ans: 1 },
+      { q: "¿Cómo se dice 'Por la noche'?", opts: ["In the morning", "In the afternoon", "At night", "At noon"], ans: 2 },
+      { q: "'Eight' es el número...?", opts: ["6", "7", "8", "9"], ans: 2 },
+      { q: "¿Cómo se dice 'Por la mañana'?", opts: ["At night", "In the afternoon", "In the morning", "At noon"], ans: 2 }
     ]
   },
   {
-    id: 5,
-    title: "Colores y ropa",
-    titleEn: "Colors & Clothing",
+    id: 5, title: "Colores y ropa", titleEn: "Colors & Clothing",
     desc: "Colores básicos y ropa de trabajo",
     phrases: [
-      { en: "Red, blue, green, yellow", es: "Rojo, azul, verde, amarillo", pron: "Red, bloo, grin, YEL-oh" },
-      { en: "White, black, pink, orange", es: "Blanco, negro, rosado, anaranjado", pron: "Wait, blak, pink, OR-enj" },
-      { en: "My uniform is blue.", es: "Mi uniforme es azul.", pron: "Mai YOO-ni-form iz bloo" },
-      { en: "I need a clean apron.", es: "Necesito un delantal limpio.", pron: "Ai nid a klin EI-pron" },
-      { en: "Where are my gloves?", es: "¿Dónde están mis guantes?", pron: "Wer ar mai glavz" },
-      { en: "I need rubber gloves.", es: "Necesito guantes de hule.", pron: "Ai nid RUB-er glavz" },
-      { en: "This shirt is dirty.", es: "Esta camisa está sucia.", pron: "Dis shert iz DER-ti" },
-      { en: "Do you have a small size?", es: "¿Tiene talla pequeña?", pron: "Doo yoo jav a smol saiz" },
-      { en: "These shoes are comfortable.", es: "Estos zapatos son cómodos.", pron: "Diz shooz ar KOM-for-ta-bel" },
-      { en: "I wear a large size.", es: "Uso talla grande.", pron: "Ai wer a larj saiz" }
+      { en: "Red, Blue, Green", es: "Rojo, Azul, Verde", pron: "Red, Bluu, Griin" },
+      { en: "White, Black, Yellow", es: "Blanco, Negro, Amarillo", pron: "Wait, Blak, YEL-oh" },
+      { en: "My uniform is blue.", es: "Mi uniforme es azul.", pron: "Mai YOO-ni-form iz bluu" },
+      { en: "I need clean gloves.", es: "Necesito guantes limpios.", pron: "Ai niid klin glovs" },
+      { en: "Where are the towels?", es: "¿Dónde están las toallas?", pron: "Wer ar de TAU-els" },
+      { en: "I need a new apron.", es: "Necesito un delantal nuevo.", pron: "Ai niid a nuu EI-pron" },
+      { en: "My shoes are comfortable.", es: "Mis zapatos son cómodos.", pron: "Mai shuuz ar COM-for-ta-bol" },
+      { en: "Please wash this.", es: "Por favor lave esto.", pron: "Pliiz wosh dis" }
     ],
     quiz: [
-      { q: "¿Cómo se dice 'azul' en inglés?", opts: ["Red", "Green", "Blue", "Yellow"], ans: 2 },
-      { q: "'Where are my gloves?' significa...?", opts: ["¿Dónde está mi uniforme?", "¿Dónde están mis guantes?", "¿Dónde está mi delantal?", "¿Dónde están mis zapatos?"], ans: 1 },
-      { q: "¿Cómo dices 'blanco' en inglés?", opts: ["Black", "Pink", "Orange", "White"], ans: 3 },
-      { q: "'This shirt is dirty' significa...?", opts: ["Esta camisa está limpia", "Esta camisa es nueva", "Esta camisa está sucia", "Esta camisa es azul"], ans: 2 },
-      { q: "¿Cómo pides guantes de hule?", opts: ["I need rubber gloves.", "I need a clean apron.", "I need a uniform.", "I need shoes."], ans: 0 }
+      { q: "¿Cómo se dice 'Azul'?", opts: ["Red", "Green", "Yellow", "Blue"], ans: 3 },
+      { q: "'White' significa...?", opts: ["Negro", "Blanco", "Rojo", "Verde"], ans: 1 },
+      { q: "¿Cómo dices 'Necesito guantes limpios'?", opts: ["I need clean shoes.", "I need clean gloves.", "I need a new apron.", "I need a towel."], ans: 1 },
+      { q: "'Where are the towels?' significa...?", opts: ["¿Dónde están los guantes?", "¿Dónde están las toallas?", "¿Dónde está mi ropa?", "¿Dónde está el jabón?"], ans: 1 },
+      { q: "¿Cuál es el color 'Yellow'?", opts: ["Verde", "Azul", "Amarillo", "Blanco"], ans: 2 }
     ]
   },
   {
-    id: 6,
-    title: "Limpieza y suministros",
-    titleEn: "Cleaning & Supplies",
+    id: 6, title: "Limpieza y suministros", titleEn: "Cleaning & Supplies",
     desc: "Vocabulario para limpieza y materiales",
     phrases: [
-      { en: "Mop, broom, vacuum cleaner", es: "Trapeador, escoba, aspiradora", pron: "Mop, broom, VAK-yoom KLEE-ner" },
-      { en: "Cleaning spray, paper towels", es: "Spray limpiador, toallas de papel", pron: "KLEE-ning sprei, PEI-per TAO-elz" },
-      { en: "I need to refill the supplies.", es: "Necesito rellenar los suministros.", pron: "Ai nid tu ri-FIL de suh-PLAI-ez" },
-      { en: "The trash is full.", es: "La basura está llena.", pron: "De trash iz ful" },
-      { en: "I need more trash bags.", es: "Necesito más bolsas de basura.", pron: "Ai nid mor trash bagz" },
-      { en: "This bathroom needs cleaning.", es: "Este baño necesita limpieza.", pron: "Dis BATH-room nidz KLEE-ning" },
+      { en: "Mop, Broom, Bucket", es: "Trapeador, Escoba, Cubeta", pron: "Mop, Broom, BOK-et" },
+      { en: "Cleaning solution.", es: "Solución de limpieza.", pron: "KLIN-ing so-LOO-shon" },
+      { en: "Trash bag.", es: "Bolsa de basura.", pron: "Trash bag" },
       { en: "The floor is wet.", es: "El piso está mojado.", pron: "De flor iz wet" },
-      { en: "Be careful, wet floor!", es: "¡Cuidado, piso mojado!", pron: "Bi KEHR-ful, wet flor" },
-      { en: "I already cleaned this room.", es: "Ya limpié este cuarto.", pron: "Ai ol-REH-di klind dis room" },
-      { en: "This room is ready.", es: "Este cuarto está listo.", pron: "Dis room iz REH-di" }
+      { en: "I need more supplies.", es: "Necesito más suministros.", pron: "Ai niid mor su-PLY-iz" },
+      { en: "Where is the storage room?", es: "¿Dónde está el cuarto de suministros?", pron: "Wer iz de STOR-ij room" },
+      { en: "Please empty the trash.", es: "Por favor vacíe la basura.", pron: "Pliiz EMP-ti de trash" },
+      { en: "Disinfect the surface.", es: "Desinfecte la superficie.", pron: "Dis-in-FEKT de SER-fis" }
     ],
     quiz: [
-      { q: "¿Cómo se dice 'escoba' en inglés?", opts: ["Mop", "Broom", "Vacuum", "Brush"], ans: 1 },
-      { q: "'The trash is full' significa...?", opts: ["La basura está vacía", "La basura está llena", "No hay basura", "La basura está afuera"], ans: 1 },
-      { q: "¿Cómo avisas que el piso está mojado?", opts: ["This room is ready.", "Be careful, wet floor!", "The trash is full.", "I need more bags."], ans: 1 },
-      { q: "'I already cleaned this room' significa...?", opts: ["Voy a limpiar este cuarto", "Ya limpié este cuarto", "Este cuarto está sucio", "Necesito limpiar"], ans: 1 },
-      { q: "¿Cómo se dice 'aspiradora'?", opts: ["Mop", "Broom", "Vacuum cleaner", "Spray"], ans: 2 }
+      { q: "'The floor is wet' significa...?", opts: ["El piso está limpio", "El piso está seco", "El piso está mojado", "El piso está sucio"], ans: 2 },
+      { q: "¿Cómo se dice 'Escoba'?", opts: ["Mop", "Bucket", "Broom", "Bag"], ans: 2 },
+      { q: "'Please empty the trash' significa...?", opts: ["Por favor limpie la basura", "Por favor vacíe la basura", "Por favor recoja la basura", "Por favor traiga la basura"], ans: 1 },
+      { q: "¿Cómo dices 'Necesito más suministros'?", opts: ["I need more help.", "I need more time.", "I need more supplies.", "I need more gloves."], ans: 2 },
+      { q: "'Trash bag' significa...?", opts: ["Bolsa de ropa", "Bolsa de suministros", "Bolsa de basura", "Bolsa de limpieza"], ans: 2 }
     ]
   },
   {
-    id: 7,
-    title: "El cuerpo humano",
-    titleEn: "The Human Body",
+    id: 7, title: "El cuerpo humano", titleEn: "The Human Body",
     desc: "Partes del cuerpo — útil para cuidado de personas",
     phrases: [
-      { en: "Head, neck, shoulders", es: "Cabeza, cuello, hombros", pron: "Jed, nek, SHOHL-derz" },
-      { en: "Arm, elbow, wrist, hand", es: "Brazo, codo, muñeca, mano", pron: "Arm, EL-boh, rist, jand" },
-      { en: "Leg, knee, ankle, foot", es: "Pierna, rodilla, tobillo, pie", pron: "Leg, nii, ANG-kel, fut" },
-      { en: "Back, chest, stomach", es: "Espalda, pecho, estómago", pron: "Bak, chest, STOM-ak" },
+      { en: "Head, Face, Neck", es: "Cabeza, Cara, Cuello", pron: "Jed, Feis, Nek" },
+      { en: "Arm, Hand, Finger", es: "Brazo, Mano, Dedo", pron: "Arm, Jand, FIN-ger" },
+      { en: "Leg, Foot, Knee", es: "Pierna, Pie, Rodilla", pron: "Leg, Fut, Nii" },
+      { en: "Back, Chest, Shoulder", es: "Espalda, Pecho, Hombro", pron: "Bak, Chest, SHOL-der" },
       { en: "Does it hurt here?", es: "¿Le duele aquí?", pron: "Daz it jert jir" },
       { en: "My back hurts.", es: "Me duele la espalda.", pron: "Mai bak jerts" },
-      { en: "I need to sit down.", es: "Necesito sentarme.", pron: "Ai nid tu sit daon" },
-      { en: "Are you in pain?", es: "¿Tiene dolor?", pron: "Ar yoo in pein" },
-      { en: "I will call the nurse.", es: "Voy a llamar a la enfermera.", pron: "Ai wil kol de ners" },
-      { en: "Please don't move.", es: "Por favor no se mueva.", pron: "Pliz dont moov" }
+      { en: "I need to take your temperature.", es: "Necesito tomarle la temperatura.", pron: "Ai niid tu teik yor TEM-per-a-cher" },
+      { en: "Please breathe slowly.", es: "Por favor respire despacio.", pron: "Pliiz briid SLOH-li" }
     ],
     quiz: [
-      { q: "¿Cómo se dice 'rodilla' en inglés?", opts: ["Ankle", "Elbow", "Knee", "Wrist"], ans: 2 },
-      { q: "'Are you in pain?' significa...?", opts: ["¿Está cansado?", "¿Tiene dolor?", "¿Puede caminar?", "¿Está bien?"], ans: 1 },
-      { q: "¿Cómo dices 'Me duele la espalda'?", opts: ["My stomach hurts.", "My leg hurts.", "My back hurts.", "My head hurts."], ans: 2 },
-      { q: "'I will call the nurse' significa...?", opts: ["Soy la enfermera", "Voy a llamar a la enfermera", "La enfermera está aquí", "Necesito una enfermera"], ans: 1 },
-      { q: "¿Cómo se dice 'estómago'?", opts: ["Chest", "Back", "Stomach", "Shoulder"], ans: 2 }
+      { q: "'Does it hurt here?' significa...?", opts: ["¿Dónde está?", "¿Le duele aquí?", "¿Cómo se siente?", "¿Necesita algo?"], ans: 1 },
+      { q: "¿Cómo se dice 'Pierna' en inglés?", opts: ["Arm", "Foot", "Knee", "Leg"], ans: 3 },
+      { q: "'Shoulder' significa...?", opts: ["Espalda", "Pecho", "Hombro", "Cuello"], ans: 2 },
+      { q: "¿Cómo dices 'Me duele la espalda'?", opts: ["My leg hurts.", "My back hurts.", "My arm hurts.", "My head hurts."], ans: 1 },
+      { q: "'Hand' significa...?", opts: ["Brazo", "Dedo", "Mano", "Pie"], ans: 2 }
     ]
   },
   {
-    id: 8,
-    title: "Comida y bebidas",
-    titleEn: "Food & Drinks",
+    id: 8, title: "Comida y bebidas", titleEn: "Food & Drinks",
     desc: "Vocabulario del comedor y menú",
     phrases: [
-      { en: "Breakfast, lunch, dinner", es: "Desayuno, almuerzo, cena", pron: "BREK-fast, lanch, DIN-er" },
-      { en: "Water, juice, coffee, tea", es: "Agua, jugo, café, té", pron: "WA-ter, joos, KAF-i, tii" },
-      { en: "Are you hungry?", es: "¿Tiene hambre?", pron: "Ar yoo JUNG-gri" },
-      { en: "What would you like to eat?", es: "¿Qué le gustaría comer?", pron: "Wat wud yoo laik tu it" },
-      { en: "I would like soup, please.", es: "Me gustaría sopa, por favor.", pron: "Ai wud laik soup, pliz" },
-      { en: "The food is hot.", es: "La comida está caliente.", pron: "De food iz jot" },
-      { en: "More water, please.", es: "Más agua, por favor.", pron: "Mor WA-ter, pliz" },
-      { en: "No sugar, please.", es: "Sin azúcar, por favor.", pron: "Noh SHUH-ger, pliz" },
-      { en: "Is the food okay?", es: "¿Está bien la comida?", pron: "Iz de food OH-kei" },
-      { en: "Enjoy your meal!", es: "¡Buen provecho!", pron: "En-JOI yor miil" }
+      { en: "Breakfast, Lunch, Dinner", es: "Desayuno, Almuerzo, Cena", pron: "BREK-fast, Lanch, DIN-er" },
+      { en: "Water, Juice, Milk", es: "Agua, Jugo, Leche", pron: "WA-ter, Juus, Milk" },
+      { en: "Are you hungry?", es: "¿Tiene hambre?", pron: "Ar yoo JAN-gri" },
+      { en: "What would you like to eat?", es: "¿Qué le gustaría comer?", pron: "Wat wud yoo laik tu iit" },
+      { en: "Is the food too hot?", es: "¿Está la comida muy caliente?", pron: "Iz de fuud tuu jot" },
+      { en: "Do you want more?", es: "¿Quiere más?", pron: "Doo yoo want mor" },
+      { en: "I'll bring your meal.", es: "Le traigo su comida.", pron: "Ail bring yor miil" },
+      { en: "Enjoy your meal!", es: "¡Buen provecho!", pron: "En-JOY yor miil" }
     ],
     quiz: [
-      { q: "¿Cómo se dice 'desayuno' en inglés?", opts: ["Lunch", "Dinner", "Breakfast", "Snack"], ans: 2 },
-      { q: "'Are you hungry?' significa...?", opts: ["¿Tiene sed?", "¿Tiene hambre?", "¿Le gusta la comida?", "¿Quiere agua?"], ans: 1 },
-      { q: "¿Cómo ofreces más agua?", opts: ["More coffee, please.", "More juice, please.", "More water, please.", "More tea, please."], ans: 2 },
-      { q: "'Enjoy your meal!' significa...?", opts: ["La comida está lista", "¡Buen provecho!", "¿Le gusta?", "La comida está caliente"], ans: 1 },
-      { q: "¿Cómo dices 'Sin azúcar, por favor'?", opts: ["No milk, please.", "No sugar, please.", "No food, please.", "No water, please."], ans: 1 }
+      { q: "'Are you hungry?' significa...?", opts: ["¿Tiene sed?", "¿Tiene hambre?", "¿Quiere agua?", "¿Está cansado?"], ans: 1 },
+      { q: "¿Cómo se dice 'Desayuno'?", opts: ["Dinner", "Lunch", "Breakfast", "Snack"], ans: 2 },
+      { q: "'Enjoy your meal!' significa...?", opts: ["¿Le gustó la comida?", "¡Buen provecho!", "¿Quiere más?", "La comida está lista."], ans: 1 },
+      { q: "¿Cómo preguntas '¿Quiere más?'?", opts: ["Do you want food?", "Do you want more?", "Do you need water?", "Do you like this?"], ans: 1 },
+      { q: "'Water' significa...?", opts: ["Jugo", "Leche", "Agua", "Sopa"], ans: 2 }
     ]
   },
   {
-    id: 9,
-    title: "Días y meses",
-    titleEn: "Days & Months",
+    id: 9, title: "Días y meses", titleEn: "Days & Months",
     desc: "Días de la semana y meses del año",
     phrases: [
-      { en: "Monday, Tuesday, Wednesday", es: "Lunes, martes, miércoles", pron: "MON-dei, TYOOZ-dei, WENZ-dei" },
-      { en: "Thursday, Friday", es: "Jueves, viernes", pron: "ZERZ-dei, FRAI-dei" },
-      { en: "Saturday, Sunday", es: "Sábado, domingo", pron: "SAT-er-dei, SON-dei" },
-      { en: "January, February, March", es: "Enero, febrero, marzo", pron: "JAN-yoo-er-i, FEB-roo-er-i, March" },
-      { en: "April, May, June", es: "Abril, mayo, junio", pron: "EI-pril, Mei, Joon" },
-      { en: "July, August, September", es: "Julio, agosto, septiembre", pron: "Joo-LAI, AW-gust, Sep-TEM-ber" },
-      { en: "October, November, December", es: "Octubre, noviembre, diciembre", pron: "Ok-TOH-ber, Noh-VEM-ber, Di-SEM-ber" },
-      { en: "What day is today?", es: "¿Qué día es hoy?", pron: "Wat dei iz tuh-DAI" },
+      { en: "Monday, Tuesday, Wednesday", es: "Lunes, Martes, Miércoles", pron: "MON-dei, TOOS-dei, WENZ-dei" },
+      { en: "Thursday, Friday", es: "Jueves, Viernes", pron: "ZERZ-dei, FRAI-dei" },
+      { en: "Saturday, Sunday", es: "Sábado, Domingo", pron: "SAT-er-dei, SON-dei" },
+      { en: "Today is Monday.", es: "Hoy es lunes.", pron: "Tuh-DEI iz MON-dei" },
       { en: "My day off is Sunday.", es: "Mi día libre es el domingo.", pron: "Mai dei of iz SON-dei" },
-      { en: "I work five days a week.", es: "Trabajo cinco días a la semana.", pron: "Ai werk faiv deiz a wiik" }
+      { en: "January, February, March", es: "Enero, Febrero, Marzo", pron: "JAN-yoo-eri, FEB-yoo-eri, March" },
+      { en: "What day is today?", es: "¿Qué día es hoy?", pron: "Wat dei iz tuh-DEI" },
+      { en: "My schedule is Monday to Friday.", es: "Mi horario es de lunes a viernes.", pron: "Mai SKED-yool iz MON-dei tu FRAI-dei" }
     ],
     quiz: [
-      { q: "¿Cómo se dice 'viernes' en inglés?", opts: ["Thursday", "Friday", "Saturday", "Monday"], ans: 1 },
-      { q: "'What day is today?' significa...?", opts: ["¿Qué hora es?", "¿Qué mes es?", "¿Qué día es hoy?", "¿Cuándo trabajas?"], ans: 2 },
-      { q: "¿Cuál es el tercer mes del año en inglés?", opts: ["January", "February", "March", "April"], ans: 2 },
-      { q: "¿Cómo se dice 'domingo'?", opts: ["Saturday", "Sunday", "Monday", "Friday"], ans: 1 },
-      { q: "'I work five days a week' significa...?", opts: ["Trabajo los fines de semana", "Trabajo cinco días a la semana", "Trabajo todos los días", "No trabajo esta semana"], ans: 1 }
+      { q: "¿Cómo se dice 'Viernes'?", opts: ["Monday", "Wednesday", "Thursday", "Friday"], ans: 3 },
+      { q: "'Sunday' significa...?", opts: ["Sábado", "Domingo", "Lunes", "Viernes"], ans: 1 },
+      { q: "'What day is today?' significa...?", opts: ["¿Qué hora es?", "¿Qué mes es?", "¿Qué día es hoy?", "¿Cuándo es el descanso?"], ans: 2 },
+      { q: "¿Cómo se dice 'Miércoles'?", opts: ["Monday", "Tuesday", "Wednesday", "Thursday"], ans: 2 },
+      { q: "'My day off is Sunday' significa...?", opts: ["Trabajo el domingo.", "Mi día libre es el domingo.", "El domingo hay reunión.", "El domingo llego tarde."], ans: 1 }
     ]
   },
   {
-    id: 10,
-    title: "Emergencias",
-    titleEn: "Emergencies",
+    id: 10, title: "Emergencias", titleEn: "Emergencies",
     desc: "Frases críticas para situaciones de emergencia",
     phrases: [
-      { en: "Call 911 immediately!", es: "¡Llame al 911 inmediatamente!", pron: "Kol nain-wan-wan ih-MEE-di-at-li" },
-      { en: "Help! I need help!", es: "¡Ayuda! ¡Necesito ayuda!", pron: "Jelp, ai nid jelp" },
-      { en: "There is an emergency!", es: "¡Hay una emergencia!", pron: "Der iz an ih-MER-jen-si" },
-      { en: "Someone has fallen!", es: "¡Alguien se cayó!", pron: "SOM-wan jaz FOL-en" },
-      { en: "Please call the nurse now!", es: "¡Por favor llame a la enfermera ahora!", pron: "Pliz kol de ners naow" },
-      { en: "Don't move him/her.", es: "No lo/la mueva.", pron: "Dont moov jim/jer" },
-      { en: "Stay calm, help is coming.", es: "Cálmese, la ayuda viene en camino.", pron: "Stei kalm, jelp iz KOM-ing" },
-      { en: "Are you okay?", es: "¿Está bien?", pron: "Ar yoo OH-kei" },
-      { en: "I will stay with you.", es: "Me quedo con usted.", pron: "Ai wil stei wid yoo" },
-      { en: "Where does it hurt?", es: "¿Dónde le duele?", pron: "Wer daz it jert" }
+      { en: "Call 911!", es: "¡Llama al 911!", pron: "Kol nain-wun-wun" },
+      { en: "I need a nurse right away.", es: "Necesito una enfermera ahora mismo.", pron: "Ai niid a ners rait ah-WEI" },
+      { en: "The patient fell!", es: "¡El paciente se cayó!", pron: "De PEI-shent fel" },
+      { en: "She is not breathing.", es: "Ella no está respirando.", pron: "Shi iz not BRIID-ing" },
+      { en: "Help! Emergency!", es: "¡Ayuda! ¡Emergencia!", pron: "Jelp! Ih-MER-jen-si" },
+      { en: "Stay calm.", es: "Quédese tranquilo.", pron: "Stei kalm" },
+      { en: "Don't move!", es: "¡No se mueva!", pron: "Dont moov" },
+      { en: "I already called for help.", es: "Ya llamé pidiendo ayuda.", pron: "Ai ol-REH-di kold for jelp" }
     ],
     quiz: [
-      { q: "¿Qué dices cuando alguien se cae?", opts: ["Are you hungry?", "Someone has fallen!", "Good morning!", "I need help."], ans: 1 },
-      { q: "'Stay calm, help is coming' significa...?", opts: ["Llame al 911", "No se mueva", "Cálmese, la ayuda viene en camino", "¿Está bien?"], ans: 2 },
-      { q: "¿Cómo preguntas dónde le duele?", opts: ["Are you okay?", "Where does it hurt?", "Can you walk?", "Do you need water?"], ans: 1 },
-      { q: "'Don't move him' significa...?", opts: ["Muévalo", "No lo mueva", "Ayúdelo", "Llámelo"], ans: 1 },
-      { q: "¿Cómo pides ayuda urgente?", opts: ["Excuse me.", "Help! I need help!", "Good evening!", "Thank you."], ans: 1 }
+      { q: "'The patient fell!' significa...?", opts: ["El paciente está bien.", "El paciente necesita ayuda.", "El paciente se cayó.", "El paciente está dormido."], ans: 2 },
+      { q: "¿Cómo dices '¡No se mueva!'?", opts: ["Stay calm.", "Call 911!", "Don't move!", "Help!"], ans: 2 },
+      { q: "'She is not breathing' significa...?", opts: ["Ella no está bien.", "Ella no está respirando.", "Ella no se mueve.", "Ella necesita agua."], ans: 1 },
+      { q: "¿Cómo pides ayuda en una emergencia?", opts: ["Just a moment!", "Help! Emergency!", "Please wait.", "I'm finished."], ans: 1 },
+      { q: "'Stay calm' significa...?", opts: ["¡Corra!", "Llame al médico.", "Quédese tranquilo.", "No se mueva."], ans: 2 }
     ]
   },
   {
     id: 11, title: "Describir personas", titleEn: "Describing People",
     desc: "Adjetivos para describir personas",
     phrases: [
-      { en: "Tall, short, medium height", es: "Alto, bajo, estatura mediana", pron: "Tol, short, MEE-di-um jait" },
-      { en: "Young, old, middle-aged", es: "Joven, mayor, de mediana edad", pron: "Yong, old, MID-el eijd" },
-      { en: "She is very kind.", es: "Ella es muy amable.", pron: "Shi iz VEH-ri kaind" },
-      { en: "He is very patient.", es: "Él es muy paciente.", pron: "Ji iz VEH-ri PEI-shent" },
-      { en: "The resident is friendly.", es: "El residente es amigable.", pron: "De REZ-i-dent iz FREND-li" },
-      { en: "She has brown hair.", es: "Ella tiene cabello castaño.", pron: "Shi jaz braon jer" },
-      { en: "He wears glasses.", es: "Él usa lentes.", pron: "Ji werz GLAS-ez" },
-      { en: "She is in a wheelchair.", es: "Ella está en silla de ruedas.", pron: "Shi iz in a WIL-cher" },
-      { en: "He needs assistance walking.", es: "Él necesita asistencia para caminar.", pron: "Ji nidz ah-SIS-tans WOK-ing" },
-      { en: "She is very cheerful today.", es: "Ella está muy alegre hoy.", pron: "Shi iz VEH-ri CHIR-ful tuh-DAI" }
+      { en: "Tall / Short", es: "Alto / Bajo", pron: "Tol / Short" },
+      { en: "Young / Old", es: "Joven / Mayor", pron: "Yang / Old" },
+      { en: "Happy / Sad", es: "Feliz / Triste", pron: "JAP-i / Sad" },
+      { en: "Sick / Healthy", es: "Enfermo / Saludable", pron: "Sik / JEL-zi" },
+      { en: "Strong / Weak", es: "Fuerte / Débil", pron: "Strong / Wiik" },
+      { en: "She looks tired.", es: "Ella parece cansada.", pron: "Shi luks TAI-erd" },
+      { en: "He is very kind.", es: "Él es muy amable.", pron: "Ji iz VEH-ri kaind" },
+      { en: "The patient is confused.", es: "El paciente está confundido.", pron: "De PEI-shent iz con-FYOOZD" }
     ],
     quiz: [
-      { q: "¿Cómo se dice 'amable' en inglés?", opts: ["Patient", "Kind", "Friendly", "Cheerful"], ans: 1 },
-      { q: "'She is in a wheelchair' significa...?", opts: ["Ella camina sola", "Ella está en silla de ruedas", "Ella necesita un bastón", "Ella está en cama"], ans: 1 },
-      { q: "¿Cómo dices 'Él usa lentes'?", opts: ["He is tall.", "He has glasses.", "He wears glasses.", "He needs help."], ans: 2 },
-      { q: "'Young' significa...?", opts: ["Mayor", "Alto", "Joven", "Bajo"], ans: 2 },
-      { q: "'She is very cheerful' significa...?", opts: ["Ella está cansada", "Ella está enferma", "Ella está muy alegre", "Ella está triste"], ans: 2 }
+      { q: "'Sick' significa...?", opts: ["Saludable", "Cansado", "Enfermo", "Débil"], ans: 2 },
+      { q: "¿Cómo se dice 'Feliz'?", opts: ["Sad", "Happy", "Tired", "Sick"], ans: 1 },
+      { q: "'She looks tired' significa...?", opts: ["Ella está enferma.", "Ella parece cansada.", "Ella está triste.", "Ella está confundida."], ans: 1 },
+      { q: "¿Cuál es el opuesto de 'Tall'?", opts: ["Old", "Weak", "Short", "Young"], ans: 2 },
+      { q: "'The patient is confused' significa...?", opts: ["El paciente está enfermo.", "El paciente está cansado.", "El paciente está confundido.", "El paciente está triste."], ans: 2 }
     ]
   },
   {
-    id: 12, title: "El hotel / residencia", titleEn: "The Facility",
+    id: 12, title: "El edificio", titleEn: "The Facility",
     desc: "Lugares y áreas dentro del edificio",
     phrases: [
-      { en: "Lobby, hallway, elevator", es: "Recepción, pasillo, elevador", pron: "LOB-i, HOL-wei, EL-i-vei-ter" },
-      { en: "Laundry room, storage room", es: "Cuarto de lavandería, bodega", pron: "LON-dri room, STOR-ij room" },
-      { en: "Dining room, activity room", es: "Comedor, sala de actividades", pron: "DAI-ning room, ak-TIV-i-ti room" },
-      { en: "First floor, second floor", es: "Primer piso, segundo piso", pron: "Ferst flor, SEK-end flor" },
-      { en: "Where is the elevator?", es: "¿Dónde está el elevador?", pron: "Wer iz de EL-i-vei-ter" },
-      { en: "Turn left, turn right", es: "Gire a la izquierda, gire a la derecha", pron: "Tern left, tern rait" },
-      { en: "Go straight ahead.", es: "Vaya recto.", pron: "Goh streit ah-JED" },
-      { en: "It's at the end of the hall.", es: "Está al final del pasillo.", pron: "Its at de end ov de jol" },
-      { en: "Take the stairs.", es: "Use las escaleras.", pron: "Teik de sterz" },
-      { en: "The exit is this way.", es: "La salida es por aquí.", pron: "De EK-sit iz dis wei" }
+      { en: "Hallway, Elevator, Stairs", es: "Pasillo, Elevador, Escaleras", pron: "JOL-wei, EL-e-vei-ter, Sterz" },
+      { en: "Nurse's station.", es: "Estación de enfermería.", pron: "Ners-ez STEI-shon" },
+      { en: "Storage room.", es: "Cuarto de suministros.", pron: "STOR-ij room" },
+      { en: "Laundry room.", es: "Cuarto de lavandería.", pron: "LON-dri room" },
+      { en: "Dining room.", es: "Comedor.", pron: "DAI-ning room" },
+      { en: "Exit / Entrance.", es: "Salida / Entrada.", pron: "EK-sit / EN-trans" },
+      { en: "Which floor?", es: "¿Qué piso?", pron: "Wich flor" },
+      { en: "Room 204.", es: "Cuarto 204.", pron: "Room too-oh-for" }
     ],
     quiz: [
-      { q: "¿Cómo se dice 'pasillo' en inglés?", opts: ["Lobby", "Hallway", "Elevator", "Laundry"], ans: 1 },
-      { q: "'Turn left' significa...?", opts: ["Gire a la derecha", "Vaya recto", "Gire a la izquierda", "Pare"], ans: 2 },
-      { q: "¿Cómo dices '¿Dónde está el elevador?'", opts: ["Where is the lobby?", "Where is the elevator?", "Where is the exit?", "Where is the dining room?"], ans: 1 },
-      { q: "'Go straight ahead' significa...?", opts: ["Gire a la derecha", "Vaya recto", "Suba las escaleras", "Pare aquí"], ans: 1 },
-      { q: "¿Cómo se dice 'comedor'?", opts: ["Activity room", "Storage room", "Laundry room", "Dining room"], ans: 3 }
+      { q: "'Dining room' significa...?", opts: ["Cuarto de lavandería", "Comedor", "Cuarto de suministros", "Sala de espera"], ans: 1 },
+      { q: "¿Cómo se dice 'Pasillo'?", opts: ["Stairs", "Elevator", "Hallway", "Exit"], ans: 2 },
+      { q: "'Which floor?' significa...?", opts: ["¿Qué cuarto?", "¿Qué piso?", "¿Qué edificio?", "¿Qué área?"], ans: 1 },
+      { q: "'Laundry room' significa...?", opts: ["Comedor", "Cuarto de suministros", "Cuarto de lavandería", "Pasillo"], ans: 2 },
+      { q: "¿Cómo se dice 'Salida'?", opts: ["Entrance", "Elevator", "Stairs", "Exit"], ans: 3 }
     ]
   },
   {
     id: 13, title: "Ropa de cama y baño", titleEn: "Bedding & Bathroom",
     desc: "Suministros del cuarto y baño",
     phrases: [
-      { en: "Sheets, pillowcase, blanket", es: "Sábanas, funda, cobija", pron: "Shiits, PIL-oh-keis, BLANG-ket" },
-      { en: "Towel, washcloth, hand towel", es: "Toalla, toallita, toalla de manos", pron: "TAO-el, WOSH-kloz, jand TAO-el" },
-      { en: "I need to change the sheets.", es: "Necesito cambiar las sábanas.", pron: "Ai nid tu cheynj de shiits" },
-      { en: "The bed is made.", es: "La cama está tendida.", pron: "De bed iz meid" },
-      { en: "Fresh towels are in the bathroom.", es: "Las toallas limpias están en el baño.", pron: "Fresh TAO-elz ar in de BATH-room" },
-      { en: "Soap, shampoo, toilet paper", es: "Jabón, champú, papel de baño", pron: "Sohp, sham-POO, TOI-let PEI-per" },
-      { en: "The toilet is clogged.", es: "El baño está tapado.", pron: "De TOI-let iz klogd" },
-      { en: "I need to report this.", es: "Necesito reportar esto.", pron: "Ai nid tu ri-PORT dis" },
-      { en: "Do you need extra pillows?", es: "¿Necesita almohadas extra?", pron: "Doo yoo nid EK-stra PIL-ohz" },
-      { en: "I will get more supplies.", es: "Voy a traer más suministros.", pron: "Ai wil get mor suh-PLAI-ez" }
+      { en: "Sheets, Pillow, Blanket", es: "Sábanas, Almohada, Cobija", pron: "Shiits, PIL-oh, BLANK-et" },
+      { en: "Towel, Washcloth", es: "Toalla, Paño de manos", pron: "TAU-el, WOSH-kloz" },
+      { en: "I need clean sheets.", es: "Necesito sábanas limpias.", pron: "Ai niid klin shiits" },
+      { en: "Do you need a blanket?", es: "¿Necesita una cobija?", pron: "Doo yoo niid a BLANK-et" },
+      { en: "The bathroom is ready.", es: "El baño está listo.", pron: "De BAZ-rum iz REH-di" },
+      { en: "I'll change your sheets.", es: "Le cambio las sábanas.", pron: "Ail cheinjd yor shiits" },
+      { en: "Soap, Shampoo, Lotion", es: "Jabón, Champú, Crema", pron: "Sohp, sham-POO, LOH-shon" },
+      { en: "Hot or cold water?", es: "¿Agua caliente o fría?", pron: "Jot or cold WA-ter" }
     ],
     quiz: [
-      { q: "¿Cómo se dice 'cobija' en inglés?", opts: ["Sheet", "Pillowcase", "Blanket", "Towel"], ans: 2 },
-      { q: "'The bed is made' significa...?", opts: ["La cama está sucia", "La cama está rota", "La cama está tendida", "La cama está vacía"], ans: 2 },
-      { q: "¿Cómo dices que el baño está tapado?", opts: ["The floor is wet.", "The toilet is clogged.", "The sink is broken.", "The shower is on."], ans: 1 },
-      { q: "'I need to change the sheets' significa...?", opts: ["Necesito lavar las sábanas", "Necesito cambiar las sábanas", "Necesito doblar las sábanas", "Necesito comprar sábanas"], ans: 1 },
-      { q: "¿Cómo se dice 'jabón'?", opts: ["Shampoo", "Soap", "Towel", "Paper"], ans: 1 }
+      { q: "'Pillow' significa...?", opts: ["Cobija", "Sábana", "Almohada", "Toalla"], ans: 2 },
+      { q: "¿Cómo dices 'Necesito sábanas limpias'?", opts: ["I need clean towels.", "I need clean sheets.", "I need a blanket.", "I need a pillow."], ans: 1 },
+      { q: "'The bathroom is ready' significa...?", opts: ["El baño está ocupado.", "El baño está sucio.", "El baño está listo.", "El baño está cerrado."], ans: 2 },
+      { q: "¿Qué significa 'Towel'?", opts: ["Jabón", "Toalla", "Sábana", "Almohada"], ans: 1 },
+      { q: "'Hot or cold water?' significa...?", opts: ["¿Necesita agua?", "¿Cuánta agua?", "¿Agua caliente o fría?", "¿Dónde está el agua?"], ans: 2 }
     ]
   },
   {
-    id: 14, title: "Sentimientos y estado de ánimo", titleEn: "Feelings & Moods",
+    id: 14, title: "Sentimientos", titleEn: "Feelings & Moods",
     desc: "Expresar y preguntar sobre el estado emocional",
     phrases: [
-      { en: "Happy, sad, tired, worried", es: "Feliz, triste, cansado, preocupado", pron: "JAP-i, sad, TAIR-d, WOR-id" },
-      { en: "I am very tired today.", es: "Estoy muy cansada hoy.", pron: "Ai am VEH-ri TAIR-d tuh-DAI" },
-      { en: "Are you feeling okay?", es: "¿Se siente bien?", pron: "Ar yoo FIL-ing OH-kei" },
-      { en: "You look a little sad.", es: "Se ve un poco triste.", pron: "Yoo luk a LIT-el sad" },
-      { en: "Is everything alright?", es: "¿Está todo bien?", pron: "Iz EV-ri-zing ol-RAIT" },
-      { en: "I'm having a good day.", es: "Estoy teniendo un buen día.", pron: "Aim JAV-ing a gud dei" },
-      { en: "Don't worry, it's okay.", es: "No se preocupe, está bien.", pron: "Dont WOR-i, its OH-kei" },
-      { en: "I feel much better now.", es: "Me siento mucho mejor ahora.", pron: "Ai fiil mach BET-er naow" },
-      { en: "That makes me happy.", es: "Eso me hace feliz.", pron: "Dat meiks mi JAP-i" },
-      { en: "Thank you for asking.", es: "Gracias por preguntar.", pron: "ZANK yoo for AS-king" }
+      { en: "I'm happy / sad.", es: "Estoy feliz / triste.", pron: "Aim JAP-i / Sad" },
+      { en: "I'm tired / stressed.", es: "Estoy cansada / estresada.", pron: "Aim TAI-erd / strest" },
+      { en: "I'm worried.", es: "Estoy preocupada.", pron: "Aim WER-rid" },
+      { en: "Are you feeling okay?", es: "¿Se siente bien?", pron: "Ar yoo FIL-ing oh-KEI" },
+      { en: "I'm feeling much better.", es: "Me siento mucho mejor.", pron: "Aim FIL-ing mach BET-er" },
+      { en: "I don't feel well.", es: "No me siento bien.", pron: "Ai dont fiil wel" },
+      { en: "You look happy today!", es: "¡Se ve feliz hoy!", pron: "Yoo luk JAP-i tuh-DAI" },
+      { en: "Everything is okay.", es: "Todo está bien.", pron: "EV-ri-zing iz oh-KEI" }
     ],
     quiz: [
-      { q: "¿Cómo se dice 'cansado' en inglés?", opts: ["Happy", "Sad", "Tired", "Worried"], ans: 2 },
-      { q: "'Are you feeling okay?' significa...?", opts: ["¿Tiene hambre?", "¿Se siente bien?", "¿Está cansado?", "¿Qué necesita?"], ans: 1 },
-      { q: "¿Cómo dices 'No se preocupe'?", opts: ["Thank you.", "I'm sorry.", "Don't worry.", "It's okay."], ans: 2 },
-      { q: "'I feel much better now' significa...?", opts: ["Me siento igual", "Me siento peor", "Me siento mucho mejor ahora", "Todavía estoy enferma"], ans: 2 },
-      { q: "'Happy' significa...?", opts: ["Triste", "Cansado", "Preocupado", "Feliz"], ans: 3 }
+      { q: "'I'm tired' significa...?", opts: ["Estoy feliz", "Estoy preocupada", "Estoy cansada", "Estoy estresada"], ans: 2 },
+      { q: "¿Cómo dices 'No me siento bien'?", opts: ["I'm okay.", "I feel great.", "I don't feel well.", "I'm better."], ans: 2 },
+      { q: "'Are you feeling okay?' significa...?", opts: ["¿Está cómodo?", "¿Se siente bien?", "¿Necesita algo?", "¿Está descansando?"], ans: 1 },
+      { q: "'I'm feeling much better' significa...?", opts: ["Me siento un poco mejor.", "Me siento igual.", "Me siento mucho mejor.", "Me siento mal."], ans: 2 },
+      { q: "¿Cómo se dice 'Estoy preocupada'?", opts: ["I'm tired.", "I'm sad.", "I'm worried.", "I'm stressed."], ans: 2 }
     ]
   },
   {
     id: 15, title: "Verbos comunes", titleEn: "Common Verbs",
     desc: "Los verbos más usados en el trabajo",
     phrases: [
-      { en: "To clean, to wash, to dry", es: "Limpiar, lavar, secar", pron: "Tu klin, tu wosh, tu drai" },
-      { en: "To carry, to lift, to push", es: "Cargar, levantar, empujar", pron: "Tu KAR-i, tu lift, tu push" },
-      { en: "To open, to close, to lock", es: "Abrir, cerrar, cerrar con llave", pron: "Tu OH-pen, tu klohz, tu lok" },
-      { en: "To call, to wait, to help", es: "Llamar, esperar, ayudar", pron: "Tu kol, tu weit, tu jelp" },
-      { en: "Please wait a moment.", es: "Por favor espere un momento.", pron: "Pliz weit a MOH-ment" },
-      { en: "I can help you with that.", es: "Puedo ayudarle con eso.", pron: "Ai kan jelp yoo wid dat" },
-      { en: "Let me open the door for you.", es: "Déjeme abrir la puerta para usted.", pron: "Let mi OH-pen de dor for yoo" },
-      { en: "I need to move this.", es: "Necesito mover esto.", pron: "Ai nid tu moov dis" },
-      { en: "Can you push the button?", es: "¿Puede presionar el botón?", pron: "Kan yoo push de BUT-on" },
-      { en: "I will carry that for you.", es: "Yo cargo eso por usted.", pron: "Ai wil KAR-i dat for yoo" }
+      { en: "To clean / I clean.", es: "Limpiar / Yo limpio.", pron: "Tu klin / Ai klin" },
+      { en: "To help / I help.", es: "Ayudar / Yo ayudo.", pron: "Tu jelp / Ai jelp" },
+      { en: "To bring / I bring.", es: "Traer / Yo traigo.", pron: "Tu bring / Ai bring" },
+      { en: "To call / I call.", es: "Llamar / Yo llamo.", pron: "Tu kol / Ai kol" },
+      { en: "To go / I go.", es: "Ir / Yo voy.", pron: "Tu goh / Ai goh" },
+      { en: "To need / I need.", es: "Necesitar / Yo necesito.", pron: "Tu niid / Ai niid" },
+      { en: "To finish / I finished.", es: "Terminar / Yo terminé.", pron: "Tu FIN-ish / Ai FIN-isht" },
+      { en: "To understand / I understand.", es: "Entender / Yo entiendo.", pron: "Tu un-der-STAND / Ai un-der-STAND" }
     ],
     quiz: [
-      { q: "¿Cómo se dice 'limpiar' en inglés?", opts: ["To wash", "To dry", "To clean", "To carry"], ans: 2 },
-      { q: "'Please wait a moment' significa...?", opts: ["Por favor venga", "Por favor espere un momento", "Por favor ayúdeme", "Por favor llame"], ans: 1 },
-      { q: "¿Cómo dices 'Puedo ayudarle con eso'?", opts: ["I need help.", "Let me open the door.", "I can help you with that.", "I will wait."], ans: 2 },
-      { q: "'To lift' significa...?", opts: ["Empujar", "Cargar", "Levantar", "Jalar"], ans: 2 },
-      { q: "¿Cómo se dice 'cerrar'?", opts: ["To open", "To lock", "To close", "To push"], ans: 2 }
+      { q: "'I help' significa...?", opts: ["Yo limpio", "Yo ayudo", "Yo llamo", "Yo traigo"], ans: 1 },
+      { q: "¿Cómo dices 'Yo traigo'?", opts: ["I go.", "I call.", "I bring.", "I need."], ans: 2 },
+      { q: "'I finished' significa...?", opts: ["Yo empiezo", "Yo necesito", "Yo entiendo", "Yo terminé"], ans: 3 },
+      { q: "¿Cuál es 'Llamar' en inglés?", opts: ["To go", "To call", "To help", "To bring"], ans: 1 },
+      { q: "'I understand' significa...?", opts: ["Yo necesito", "Yo termino", "Yo entiendo", "Yo voy"], ans: 2 }
     ]
   },
   {
     id: 16, title: "El clima", titleEn: "The Weather",
     desc: "Hablar sobre el tiempo y la temperatura",
     phrases: [
-      { en: "It's sunny today.", es: "Hoy está soleado.", pron: "Its SON-i tuh-DAI" },
-      { en: "It's raining outside.", es: "Está lloviendo afuera.", pron: "Its REIN-ing aot-SAID" },
-      { en: "It's cold today.", es: "Hoy hace frío.", pron: "Its kold tuh-DAI" },
-      { en: "It's very hot.", es: "Hace mucho calor.", pron: "Its VEH-ri jot" },
-      { en: "What is the weather like?", es: "¿Cómo está el clima?", pron: "Wat iz de WED-er laik" },
-      { en: "It's windy today.", es: "Hoy hay viento.", pron: "Its WIN-di tuh-DAI" },
-      { en: "Don't forget your jacket.", es: "No olvide su chaqueta.", pron: "Dont for-GET yor JAK-et" },
+      { en: "It's sunny today.", es: "Hoy hace sol.", pron: "Its SON-i tuh-DAI" },
+      { en: "It's cold outside.", es: "Hace frío afuera.", pron: "Its cold out-SAID" },
+      { en: "It's raining.", es: "Está lloviendo.", pron: "Its REIN-ing" },
+      { en: "What's the weather like?", es: "¿Cómo está el clima?", pron: "Wats de WEZ-er laik" },
+      { en: "It's very hot today.", es: "Hace mucho calor hoy.", pron: "Its VEH-ri jot tuh-DAI" },
+      { en: "Bring a jacket.", es: "Trae una chaqueta.", pron: "Bring a JAK-et" },
       { en: "It's a beautiful day.", es: "Es un día hermoso.", pron: "Its a BYOO-ti-ful dei" },
-      { en: "The weather is nice.", es: "El clima está agradable.", pron: "De WED-er iz nais" },
-      { en: "It may snow later.", es: "Puede nevar más tarde.", pron: "It mei snoh LEI-ter" }
+      { en: "It's windy.", es: "Hace viento.", pron: "Its WIN-di" }
     ],
     quiz: [
-      { q: "¿Cómo se dice 'Está lloviendo'?", opts: ["It's sunny.", "It's windy.", "It's raining.", "It's snowing."], ans: 2 },
-      { q: "'It's very hot' significa...?", opts: ["Hace mucho frío", "Está nublado", "Hace mucho calor", "Está ventoso"], ans: 2 },
-      { q: "¿Cómo dices 'Es un día hermoso'?", opts: ["It's very hot.", "It's a beautiful day.", "The weather is bad.", "It's windy."], ans: 1 },
-      { q: "'Don't forget your jacket' significa...?", opts: ["Trae un paraguas", "No olvide su chaqueta", "Hace frío afuera", "Lleva un suéter"], ans: 1 },
-      { q: "¿Qué significa 'It's sunny'?", opts: ["Está nublado", "Está lloviendo", "Está soleado", "Está nevando"], ans: 2 }
+      { q: "'It's raining' significa...?", opts: ["Hace sol.", "Está nevando.", "Está lloviendo.", "Hace viento."], ans: 2 },
+      { q: "¿Cómo dices 'Hace frío afuera'?", opts: ["It's hot outside.", "It's windy outside.", "It's cold outside.", "It's raining outside."], ans: 2 },
+      { q: "'It's sunny today' significa...?", opts: ["Hoy está nublado.", "Hoy hace sol.", "Hoy llueve.", "Hoy hace frío."], ans: 1 },
+      { q: "'Bring a jacket' significa...?", opts: ["Trae un paraguas.", "Trae agua.", "Trae una chaqueta.", "Trae comida."], ans: 2 },
+      { q: "¿Cómo preguntas '¿Cómo está el clima?'?", opts: ["Is it cold?", "What's the weather like?", "Is it raining?", "How is today?"], ans: 1 }
     ]
   },
   {
     id: 17, title: "Conversación casual", titleEn: "Casual Conversation",
     desc: "Frases para conversaciones amigables",
     phrases: [
-      { en: "How was your weekend?", es: "¿Cómo estuvo su fin de semana?", pron: "Jao waz yor WIK-end" },
-      { en: "Did you watch the game?", es: "¿Vio el juego?", pron: "Did yoo woch de geim" },
-      { en: "I love my job.", es: "Me encanta mi trabajo.", pron: "Ai lov mai job" },
-      { en: "I have two children.", es: "Tengo dos hijos.", pron: "Ai jav too CHIL-dren" },
-      { en: "Where are you from?", es: "¿De dónde eres?", pron: "Wer ar yoo from" },
+      { en: "How was your weekend?", es: "¿Cómo estuvo tu fin de semana?", pron: "Jao waz yor WIK-end" },
       { en: "I am from Mexico.", es: "Soy de México.", pron: "Ai am from MEK-si-koh" },
-      { en: "I've been here for two years.", es: "He estado aquí por dos años.", pron: "Aiv bin jir for too yirz" },
-      { en: "My family is very important to me.", es: "Mi familia es muy importante para mí.", pron: "Mai FAM-i-li iz VEH-ri im-POR-tant tu mi" },
-      { en: "What do you like to do?", es: "¿Qué te gusta hacer?", pron: "Wat doo yoo laik tu doo" },
-      { en: "I like to cook and dance.", es: "Me gusta cocinar y bailar.", pron: "Ai laik tu kuk and dans" }
+      { en: "I love my job.", es: "Me encanta mi trabajo.", pron: "Ai lov mai job" },
+      { en: "Where are you from?", es: "¿De dónde eres?", pron: "Wer ar yoo from" },
+      { en: "I have two children.", es: "Tengo dos hijos.", pron: "Ai jav tuu CHIL-dren" },
+      { en: "What do you do on weekends?", es: "¿Qué haces los fines de semana?", pron: "Wat doo yoo doo on WIK-ends" },
+      { en: "I enjoy walking.", es: "Me gusta caminar.", pron: "Ai en-JOY WOK-ing" },
+      { en: "Nice talking to you!", es: "¡Qué gusto platicar contigo!", pron: "Nais TOK-ing tu yoo" }
     ],
     quiz: [
       { q: "'How was your weekend?' significa...?", opts: ["¿Cómo estás?", "¿Cómo estuvo tu fin de semana?", "¿Qué hiciste hoy?", "¿Cuándo trabajas?"], ans: 1 },
@@ -571,23 +737,21 @@ const LESSONS = [
     id: 18, title: "En la oficina", titleEn: "In the Office",
     desc: "Comunicación con supervisores y compañeros",
     phrases: [
-      { en: "I need to speak with my supervisor.", es: "Necesito hablar con mi supervisora.", pron: "Ai nid tu spiik wid mai SOO-per-vai-zer" },
+      { en: "I need to speak with my supervisor.", es: "Necesito hablar con mi supervisora.", pron: "Ai niid tu spiik wid mai SOO-per-vai-zer" },
       { en: "I will be late today.", es: "Llegaré tarde hoy.", pron: "Ai wil bi leit tuh-DAI" },
       { en: "I have a question.", es: "Tengo una pregunta.", pron: "Ai jav a KWES-chen" },
       { en: "Can I take my break now?", es: "¿Puedo tomar mi descanso ahora?", pron: "Kan ai teik mai breik naow" },
       { en: "I finished my tasks.", es: "Terminé mis tareas.", pron: "Ai FIN-isht mai tasks" },
-      { en: "I need to call in sick.", es: "Necesito reportarme enferma.", pron: "Ai nid tu kol in sik" },
+      { en: "I need to call in sick.", es: "Necesito reportarme enferma.", pron: "Ai niid tu kol in sik" },
       { en: "My schedule changed.", es: "Mi horario cambió.", pron: "Mai SKED-yool cheinjd" },
-      { en: "I need this day off.", es: "Necesito este día libre.", pron: "Ai nid dis dei of" },
-      { en: "Please sign here.", es: "Por favor firme aquí.", pron: "Pliz sain jir" },
-      { en: "Where do I clock in?", es: "¿Dónde marco mi entrada?", pron: "Wer doo ai klok in" }
+      { en: "I need this day off.", es: "Necesito este día libre.", pron: "Ai niid dis dei of" }
     ],
     quiz: [
       { q: "'I will be late today' significa...?", opts: ["No puedo ir hoy", "Llegaré tarde hoy", "Llegué temprano", "Ya terminé"], ans: 1 },
       { q: "¿Cómo dices que terminaste tus tareas?", opts: ["I need help.", "I finished my tasks.", "I have a question.", "I'm on my break."], ans: 1 },
       { q: "'I need to call in sick' significa...?", opts: ["Necesito un médico", "Estoy en el hospital", "Necesito reportarme enferma", "No me siento bien aquí"], ans: 2 },
       { q: "¿Cómo pides el día libre?", opts: ["I need this day off.", "I finished early.", "I'm late today.", "I have a question."], ans: 0 },
-      { q: "'Where do I clock in?' significa...?", opts: ["¿Cuándo es mi descanso?", "¿Dónde marco mi entrada?", "¿Cuándo termino?", "¿Dónde firmo?"], ans: 1 }
+      { q: "'My schedule changed' significa...?", opts: ["Mi trabajo cambió.", "Mi horario cambió.", "Mi jefe cambió.", "Mi cuarto cambió."], ans: 1 }
     ]
   },
   {
@@ -600,10 +764,8 @@ const LESSONS = [
       { en: "When? — ¿Cuándo?", es: "When do we start? ¿Cuándo empezamos?", pron: "Wen" },
       { en: "Why? — ¿Por qué?", es: "Why is it closed? ¿Por qué está cerrado?", pron: "Wai" },
       { en: "How? — ¿Cómo?", es: "How do I do this? ¿Cómo hago esto?", pron: "Jao" },
-      { en: "How much? — ¿Cuánto cuesta?", es: "How much is it? ¿Cuánto cuesta?", pron: "Jao mach" },
-      { en: "How many? — ¿Cuántos?", es: "How many rooms? ¿Cuántos cuartos?", pron: "Jao MEH-ni" },
-      { en: "Which one? — ¿Cuál?", es: "Which room? ¿Cuál cuarto?", pron: "Wich wan" },
-      { en: "Whose? — ¿De quién?", es: "Whose bag is this? ¿De quién es esta bolsa?", pron: "Jooz" }
+      { en: "How much? — ¿Cuánto?", es: "How much is it? ¿Cuánto cuesta?", pron: "Jao mach" },
+      { en: "How many? — ¿Cuántos?", es: "How many rooms? ¿Cuántos cuartos?", pron: "Jao MEH-ni" }
     ],
     quiz: [
       { q: "¿Qué palabra en inglés pregunta '¿Dónde?'", opts: ["Who", "What", "Where", "When"], ans: 2 },
@@ -615,7 +777,7 @@ const LESSONS = [
   },
   {
     id: 20, title: "Repaso general", titleEn: "Final Review",
-    desc: "Repaso de las frases más importantes de todas las lecciones",
+    desc: "Repaso de las frases más importantes",
     phrases: [
       { en: "Good morning! How are you feeling?", es: "¡Buenos días! ¿Cómo se siente?", pron: "Gud MOR-ning, jao ar yoo FIL-ing" },
       { en: "I'm here to help you.", es: "Estoy aquí para ayudarle.", pron: "Aim jir tu jelp yoo" },
@@ -624,9 +786,7 @@ const LESSONS = [
       { en: "I will call the nurse right away.", es: "Voy a llamar a la enfermera ahora mismo.", pron: "Ai wil kol de ners rait ah-WEI" },
       { en: "Your room is clean and ready.", es: "Su cuarto está limpio y listo.", pron: "Yor room iz klin and REH-di" },
       { en: "Have a wonderful day!", es: "¡Que tenga un día maravilloso!", pron: "Jav a WON-der-ful dei" },
-      { en: "I finished my work for today.", es: "Terminé mi trabajo de hoy.", pron: "Ai FIN-isht mai werk for tuh-DAI" },
-      { en: "Thank you for your patience.", es: "Gracias por su paciencia.", pron: "ZANK yoo for yor PEI-shens" },
-      { en: "It was a pleasure working with you.", es: "Fue un placer trabajar con usted.", pron: "It waz a PLEH-zher WER-king wid yoo" }
+      { en: "Thank you for your patience.", es: "Gracias por su paciencia.", pron: "ZANK yoo for yor PEI-shens" }
     ],
     quiz: [
       { q: "¿Cómo ofreces ayuda a alguien?", opts: ["I'm finished.", "I'm here to help you.", "I need help.", "Can you help me?"], ans: 1 },
@@ -638,18 +798,81 @@ const LESSONS = [
   }
 ];
 
-// ── PROGRESS ─────────────────────────────────────────────
+// ── STATE ─────────────────────────────────────────────────
+let currentLesson = null, currentTab = 'learn';
+let quizIndex = 0, quizScore = 0, quizAnswered = false;
+let transDir = 'es-en';
+
 function loadProgress() {
   try { return JSON.parse(localStorage.getItem('angie_progress') || '{}'); } catch { return {}; }
 }
 function saveProgress(p) { localStorage.setItem('angie_progress', JSON.stringify(p)); }
+function loadFavs() {
+  try { return JSON.parse(localStorage.getItem('angie_favs') || '[]'); } catch { return []; }
+}
+function saveFavs(f) { localStorage.setItem('angie_favs', JSON.stringify(f)); }
 
-let progress = loadProgress();
-let currentLesson = null, currentTab = 'learn', quizIndex = 0, quizScore = 0, quizAnswered = false;
+// ── SCREEN ROUTING ────────────────────────────────────────
+function showScreen(name) {
+  ['home','translator','sentences','lesson','daily','favorites'].forEach(s => {
+    document.getElementById('screen-' + s).style.display = 'none';
+  });
+  document.getElementById('screen-' + name).style.display = 'block';
+  if (name === 'sentences') renderLessonList();
+  if (name === 'daily') renderDaily();
+  if (name === 'favorites') renderFavorites();
+  window.scrollTo(0,0);
+}
 
-// ── RENDER LIST ───────────────────────────────────────────
-function renderList() {
-  progress = loadProgress();
+// ── TRANSLATOR ────────────────────────────────────────────
+function setDir(dir) {
+  transDir = dir;
+  document.getElementById('dir-es').className = 'dir-btn' + (dir==='es-en'?' active':'');
+  document.getElementById('dir-en').className = 'dir-btn' + (dir==='en-es'?' active':'');
+  document.getElementById('trans-label-in').textContent = dir==='es-en' ? 'Escribe en español:' : 'Write in English:';
+  document.getElementById('trans-label-out').textContent = dir==='es-en' ? 'Traducción en inglés:' : 'Traducción en español:';
+  document.getElementById('trans-input').value = '';
+  document.getElementById('trans-result').textContent = '—';
+  document.getElementById('trans-input').placeholder = dir==='es-en' ? 'Escribe aquí...' : 'Write here...';
+}
+
+async function translateChunk(text, from, to) {
+  const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${from}|${to}`;
+  const res = await fetch(url);
+  const data = await res.json();
+  if (data.responseStatus === 200) return data.responseData.translatedText;
+  throw new Error('Translation failed');
+}
+
+async function doTranslate() {
+  const input = document.getElementById('trans-input').value.trim();
+  const result = document.getElementById('trans-result');
+  if (!input) { result.textContent = '—'; return; }
+  result.textContent = '⏳ Traduciendo...';
+  try {
+    const [from, to] = transDir === 'es-en' ? ['es','en'] : ['en','es'];
+    const chunks = [];
+    for (let i = 0; i < input.length; i += 400) chunks.push(input.slice(i, i+400));
+    const parts = await Promise.all(chunks.map(c => translateChunk(c, from, to)));
+    result.textContent = parts.join(' ');
+  } catch(e) {
+    result.textContent = '❌ Error. Intenta de nuevo.';
+  }
+}
+
+function speakResult() {
+  const text = document.getElementById('trans-result').textContent;
+  if (!text || text === '—') return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = transDir === 'es-en' ? 'en-US' : 'es-ES';
+  u.rate = 0.85;
+  window.speechSynthesis.speak(u);
+}
+
+// ── LESSON LIST ───────────────────────────────────────────
+function renderLessonList() {
+  const progress = loadProgress();
   const done = Object.keys(progress).filter(k => progress[k] === 'done').length;
   document.getElementById('total-bar').style.width = (done/20*100) + '%';
   document.getElementById('total-label').textContent = done + ' de 20 lecciones completadas';
@@ -658,36 +881,28 @@ function renderList() {
   list.innerHTML = '';
   LESSONS.forEach((lesson, i) => {
     const isDone = progress[lesson.id] === 'done';
-    const isLocked = i > 0 && progress[LESSONS[i-1].id] !== 'done';
+    const isLocked = i > 0 && loadProgress()[LESSONS[i-1].id] !== 'done';
     const card = document.createElement('div');
-    card.className = 'lesson-card' + (isDone ? ' done' : '') + (isLocked ? ' locked' : '');
+    card.className = 'lesson-card' + (isDone?' done':'') + (isLocked?' locked':'');
     card.innerHTML = `
       <div class="lesson-num">${lesson.id}</div>
       <div class="lesson-info">
-        <h3>${lesson.title}</h3>
+        <h3>${lesson.title} • ${lesson.titleEn}</h3>
         <p>${lesson.desc}</p>
       </div>
-      <div class="lesson-badge">${isDone ? '✅' : isLocked ? '🔒' : '▶️'}</div>`;
+      <div class="lesson-badge">${isDone?'✅':isLocked?'🔒':'▶️'}</div>`;
     if (!isLocked) card.onclick = () => openLesson(lesson);
     list.appendChild(card);
   });
 }
 
-// ── OPEN LESSON ───────────────────────────────────────────
 function openLesson(lesson) {
   currentLesson = lesson;
   quizIndex = 0; quizScore = 0; quizAnswered = false;
   document.getElementById('lv-title').textContent = lesson.title + ' • ' + lesson.titleEn;
   document.getElementById('lv-subtitle').textContent = lesson.desc;
-  document.getElementById('lesson-list').style.display = 'none';
-  document.getElementById('lesson-view').style.display = 'block';
+  showScreen('lesson');
   setTab('learn');
-}
-
-function showList() {
-  document.getElementById('lesson-view').style.display = 'none';
-  document.getElementById('lesson-list').style.display = 'block';
-  renderList();
 }
 
 // ── TABS ──────────────────────────────────────────────────
@@ -697,22 +912,25 @@ function setTab(tab) {
   document.getElementById('tab-quiz').className  = 'tab-btn' + (tab==='quiz' ?' active':'');
   document.getElementById('learn-section').style.display = tab==='learn' ? 'block' : 'none';
   document.getElementById('quiz-section').style.display  = tab==='quiz'  ? 'block' : 'none';
-  if (tab === 'learn') renderLearn();
-  if (tab === 'quiz')  renderQuiz();
+  if (tab==='learn') renderLearn();
+  if (tab==='quiz')  { quizIndex=0; quizScore=0; quizAnswered=false; renderQuiz(); }
 }
 
 // ── LEARN ─────────────────────────────────────────────────
 function renderLearn() {
+  const favs = loadFavs();
   const sec = document.getElementById('learn-section');
   sec.innerHTML = '';
   currentLesson.phrases.forEach(p => {
+    const isFav = favs.some(f => f.en === p.en);
     const card = document.createElement('div');
     card.className = 'phrase-card';
     card.innerHTML = `
       <div class="phrase-en">${p.en}</div>
       <div class="phrase-es">${p.es}</div>
       <div class="phrase-pron">🔤 ${p.pron}</div>
-      <button class="speak-btn" onclick="speak('${p.en.replace(/'/g,"\\'")}')">🔊 Escuchar</button>`;
+      <button class="speak-btn" onclick="speak('${p.en.replace(/'/g,"\\'")}')">🔊 Escuchar</button>
+      <button class="fav-btn ${isFav?'saved':''}" id="fav-${p.en.replace(/[^a-z0-9]/gi,'')}" onclick="toggleFav(${JSON.stringify(p).replace(/"/g,'&quot;')}, this)">${isFav?'⭐ Guardado':'☆ Guardar'}</button>`;
     sec.appendChild(card);
   });
 }
@@ -724,72 +942,146 @@ function speak(text) {
   window.speechSynthesis.speak(u);
 }
 
+function toggleFav(phrase, btn) {
+  let favs = loadFavs();
+  const idx = favs.findIndex(f => f.en === phrase.en);
+  if (idx >= 0) {
+    favs.splice(idx, 1);
+    btn.className = 'fav-btn';
+    btn.textContent = '☆ Guardar';
+  } else {
+    favs.push(phrase);
+    btn.className = 'fav-btn saved';
+    btn.textContent = '⭐ Guardado';
+  }
+  saveFavs(favs);
+}
+
 // ── QUIZ ──────────────────────────────────────────────────
 function renderQuiz() {
   const sec = document.getElementById('quiz-section');
-  const q = currentLesson.quiz;
-
-  if (quizIndex >= q.length) {
-    const pct = Math.round(quizScore / q.length * 100);
+  sec.innerHTML = '';
+  if (quizIndex >= currentLesson.quiz.length) {
+    const pct = Math.round(quizScore / currentLesson.quiz.length * 100);
     const passed = pct >= 70;
     if (passed) {
-      progress[currentLesson.id] = 'done';
-      saveProgress(progress);
+      const prog = loadProgress();
+      prog[currentLesson.id] = 'done';
+      saveProgress(prog);
     }
     sec.innerHTML = `
-      <div class="complete-card">
-        <div style="font-size:3rem;margin-bottom:10px">${passed ? '🏆' : '📝'}</div>
-        <h2>${passed ? '¡Excelente!' : 'Sigue practicando'}</h2>
-        <p>${passed ? '¡Lección completada! Obtuviste ' + pct + '%' : 'Obtuviste ' + pct + '%. Necesitas 70% para pasar.'}</p>
-        <button class="next-btn" onclick="${passed ? 'showList()' : 'restartQuiz()'}" style="margin-bottom:10px">
-          ${passed ? '✅ Continuar' : '🔄 Intentar de nuevo'}
-        </button>
-        ${passed ? '' : '<button class="next-btn" style="background:rgba(0,0,0,0.2)" onclick="setTab(\'learn\')">📖 Repasar lección</button>'}
+      <div class="quiz-done">
+        <h2>${passed ? '🎉 ¡Felicitaciones!' : '💪 ¡Sigue intentando!'}</h2>
+        <div class="quiz-score">${pct}%</div>
+        <p>${quizScore} de ${currentLesson.quiz.length} correctas</p>
+        <p class="${passed?'pass-msg':'fail-msg'}">${passed ? '✅ ¡Lección completada! Siguiente lección desbloqueada.' : '❌ Necesitas 70% para continuar. ¡Tú puedes!'}</p>
+        <button class="next-btn" style="margin-top:16px;" onclick="setTab('quiz')">${passed ? '🔄 Repasar' : '🔄 Intentar de nuevo'}</button>
+        ${passed ? `<button class="next-btn" style="margin-top:10px;background:linear-gradient(135deg,#27ae60,#2ecc71);" onclick="showScreen('sentences')">📝 Ver lecciones</button>` : ''}
       </div>`;
     return;
   }
-
-  const cur = q[quizIndex];
-  sec.innerHTML = `
-    <div class="score-display">Pregunta ${quizIndex+1} de ${q.length} • Puntos: ${quizScore}</div>
-    <div class="quiz-card">
-      <div class="quiz-q">${cur.q}</div>
-      ${cur.opts.map((o,i) => `<button class="quiz-opt" id="opt-${i}" onclick="answerQuiz(${i})">${o}</button>`).join('')}
-      <div id="quiz-fb" style="display:none" class="quiz-feedback"></div>
-    </div>
-    <button class="next-btn" id="next-q" style="display:none" onclick="nextQuestion()">Siguiente →</button>`;
+  const q = currentLesson.quiz[quizIndex];
+  quizAnswered = false;
+  const card = document.createElement('div');
+  card.className = 'quiz-card';
+  card.innerHTML = `
+    <div class="quiz-q">❓ ${q.q}</div>
+    ${q.opts.map((o,i) => `<button class="quiz-opt" onclick="answerQuiz(${i}, this)">${o}</button>`).join('')}
+    <div class="quiz-feedback" id="qfb" style="display:none"></div>
+    <button class="next-btn" id="qnext" style="display:none" onclick="nextQuiz()">Siguiente ➡️</button>`;
+  sec.appendChild(card);
+  const prog = document.createElement('div');
+  prog.style.cssText = 'text-align:center;color:rgba(255,255,255,0.5);font-size:0.8rem;margin-top:8px;';
+  prog.textContent = `Pregunta ${quizIndex+1} de ${currentLesson.quiz.length}`;
+  sec.appendChild(prog);
 }
 
-function answerQuiz(chosen) {
+function answerQuiz(chosen, btn) {
   if (quizAnswered) return;
   quizAnswered = true;
-  const cur = currentLesson.quiz[quizIndex];
-  const correct = chosen === cur.ans;
-  if (correct) quizScore++;
-  document.querySelectorAll('.quiz-opt').forEach((btn, i) => {
-    btn.disabled = true;
-    if (i === cur.ans) btn.classList.add('correct');
-    else if (i === chosen && !correct) btn.classList.add('wrong');
+  const q = currentLesson.quiz[quizIndex];
+  const opts = document.querySelectorAll('.quiz-opt');
+  opts.forEach((o, i) => {
+    if (i === q.ans) o.classList.add('correct');
+    else if (i === chosen) o.classList.add('wrong');
+    o.disabled = true;
   });
-  const fb = document.getElementById('quiz-fb');
+  const fb = document.getElementById('qfb');
+  if (chosen === q.ans) {
+    quizScore++;
+    fb.textContent = '✅ ¡Correcto!';
+    fb.className = 'quiz-feedback ok';
+  } else {
+    fb.textContent = '❌ Incorrecto. La respuesta correcta está marcada en verde.';
+    fb.className = 'quiz-feedback bad';
+  }
   fb.style.display = 'block';
-  fb.className = 'quiz-feedback ' + (correct ? 'ok' : 'bad');
-  fb.textContent = correct ? '✅ ¡Correcto!' : '❌ La respuesta correcta es: ' + cur.opts[cur.ans];
-  document.getElementById('next-q').style.display = 'block';
+  document.getElementById('qnext').style.display = 'block';
 }
 
-function nextQuestion() {
-  quizIndex++; quizAnswered = false;
+function nextQuiz() {
+  quizIndex++;
   renderQuiz();
 }
 
-function restartQuiz() {
-  quizIndex = 0; quizScore = 0; quizAnswered = false;
-  renderQuiz();
+// ── DAILY PHRASES ─────────────────────────────────────────
+function renderDaily() {
+  const dc = document.getElementById('daily-content');
+  dc.innerHTML = '';
+  DAILY.forEach(cat => {
+    const div = document.createElement('div');
+    div.className = 'daily-cat';
+    div.innerHTML = `<div class="daily-cat-title">${cat.cat}</div>`;
+    cat.phrases.forEach(p => {
+      const row = document.createElement('div');
+      row.className = 'daily-phrase';
+      row.innerHTML = `
+        <div class="daily-phrase-row">
+          <div class="daily-phrase-text">
+            <div class="en">${p.en}</div>
+            <div class="es">${p.es}</div>
+            <div class="pron">🔤 ${p.pron}</div>
+          </div>
+          <button class="speak-btn" style="flex-shrink:0;" onclick="speak('${p.en.replace(/'/g,"\\'")}')">🔊</button>
+        </div>`;
+      div.appendChild(row);
+    });
+    dc.appendChild(div);
+  });
+}
+
+// ── FAVORITES ─────────────────────────────────────────────
+function renderFavorites() {
+  const favs = loadFavs();
+  const fc = document.getElementById('fav-content');
+  fc.innerHTML = '';
+  if (favs.length === 0) {
+    fc.innerHTML = '<div class="fav-empty">⭐ Todavía no tienes favoritos.<br><br>Toca ☆ Guardar en cualquier frase para guardarla aquí.</div>';
+    return;
+  }
+  favs.forEach((p, idx) => {
+    const div = document.createElement('div');
+    div.className = 'fav-item';
+    div.innerHTML = `
+      <div class="fav-item-text">
+        <div class="en">${p.en}</div>
+        <div class="es">${p.es}</div>
+      </div>
+      <button class="speak-btn" onclick="speak('${p.en.replace(/'/g,"\\'")}')">🔊</button>
+      <button class="fav-remove" onclick="removeFav(${idx})">✕</button>`;
+    fc.appendChild(div);
+  });
+}
+
+function removeFav(idx) {
+  const favs = loadFavs();
+  favs.splice(idx, 1);
+  saveFavs(favs);
+  renderFavorites();
 }
 
 // ── INIT ──────────────────────────────────────────────────
-renderList();
+showScreen('home');
 </script>
 </body>
 </html>
