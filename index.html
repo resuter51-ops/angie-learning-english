@@ -218,8 +218,7 @@ body {
 <div class="main">
 
   <!-- HOME -->
-  <div id="screen-home">
-    <div class="home-label">¿Qué quieres hacer? / What do you want to do?</div>
+
     <div class="menu-card" onclick="showScreen('translator')">
       <div class="menu-icon">🔤</div>
       <div class="menu-text">
@@ -234,7 +233,7 @@ body {
       <div class="menu-text">
         <div class="menu-title-es">Aprende Oraciones</div>
         <div class="menu-title-en">Learn Sentences</div>
-        <div class="menu-desc">De español a inglés, paso a paso</div>
+        <div class="menu-desc">Toca palabra por palabra para aprender</div>
       </div>
       <div class="menu-arrow">›</div>
     </div>
@@ -253,6 +252,15 @@ body {
         <div class="menu-title-es">Mis Favoritos</div>
         <div class="menu-title-en">My Favorites</div>
         <div class="menu-desc">Palabras que guardé para practicar</div>
+      </div>
+      <div class="menu-arrow">›</div>
+    </div>
+    <div class="menu-card" onclick="showScreen('lessons')">
+      <div class="menu-icon">📚</div>
+      <div class="menu-text">
+        <div class="menu-title-es">Lecciones y Pruebas</div>
+        <div class="menu-title-en">Lessons & Quizzes</div>
+        <div class="menu-desc">20 lecciones — completa cada una para avanzar</div>
       </div>
       <div class="menu-arrow">›</div>
     </div>
@@ -278,10 +286,18 @@ body {
     </div>
   </div>
 
-  <!-- SENTENCES (Lesson List) -->
+  <!-- APRENDE ORACIONES - Word Reveal Game -->
   <div id="screen-sentences" style="display:none">
     <button class="back-btn" onclick="showScreen('home')">← Inicio</button>
     <div class="section-title">📝 Aprende Oraciones</div>
+    <div class="section-sub">Toca cada palabra para revelar la traducción</div>
+    <div id="word-reveal-area"></div>
+  </div>
+
+  <!-- LESSONS & QUIZZES -->
+  <div id="screen-lessons" style="display:none">
+    <button class="back-btn" onclick="showScreen('home')">← Inicio</button>
+    <div class="section-title">📚 Lecciones y Pruebas</div>
     <div class="progress-bar-wrap"><div class="progress-bar-fill" id="total-bar" style="width:0%"></div></div>
     <div class="progress-label" id="total-label">0 de 20 lecciones completadas</div>
     <div id="lesson-list"></div>
@@ -289,7 +305,7 @@ body {
 
   <!-- LESSON VIEW -->
   <div id="screen-lesson" style="display:none">
-    <button class="back-btn" onclick="showScreen('sentences')">← Lecciones</button>
+    <button class="back-btn" onclick="showScreen('lessons')">← Lecciones</button>
     <div class="section-title" id="lv-title"></div>
     <div class="section-sub" id="lv-subtitle"></div>
     <div class="tab-row">
@@ -317,61 +333,7 @@ body {
   </div>
 
 </div>
-
 <script>
-// ── DAILY PHRASES DATA ────────────────────────────────────
-const DAILY = [
-  {
-    cat: "☀️ Saludos / Greetings",
-    phrases: [
-      { en: "Good morning!", es: "¡Buenos días!", pron: "Gud MOR-ning" },
-      { en: "Good afternoon!", es: "¡Buenas tardes!", pron: "Gud AF-ter-noon" },
-      { en: "Good evening!", es: "¡Buenas noches!", pron: "Gud IIV-ning" },
-      { en: "How are you?", es: "¿Cómo estás?", pron: "Jao ar yoo" },
-      { en: "I'm fine, thank you!", es: "¡Estoy bien, gracias!", pron: "Aim fain, ZANK yoo" },
-      { en: "Nice to meet you!", es: "¡Mucho gusto!", pron: "Nais tu miit yoo" },
-      { en: "See you later!", es: "¡Hasta luego!", pron: "Sii yoo LEI-ter" },
-      { en: "Have a good day!", es: "¡Que tenga buen día!", pron: "Jav a gud dei" }
-    ]
-  },
-  {
-    cat: "💼 En el trabajo / At Work",
-    phrases: [
-      { en: "I'm ready to work.", es: "Estoy lista para trabajar.", pron: "Aim REH-di tu werk" },
-      { en: "Where do I start?", es: "¿Por dónde empiezo?", pron: "Wer doo ai start" },
-      { en: "I need help, please.", es: "Necesito ayuda, por favor.", pron: "Ai niid jelp, pliiz" },
-      { en: "I'm on my break.", es: "Estoy en mi descanso.", pron: "Aim on mai breik" },
-      { en: "I finished my tasks.", es: "Terminé mis tareas.", pron: "Ai FIN-isht mai tasks" },
-      { en: "I will be late today.", es: "Llegaré tarde hoy.", pron: "Ai wil bi leit tuh-DAI" },
-      { en: "Can I take my break now?", es: "¿Puedo tomar mi descanso ahora?", pron: "Kan ai teik mai breik naow" },
-      { en: "I need to speak with my supervisor.", es: "Necesito hablar con mi supervisora.", pron: "Ai niid tu spiik wid mai soo-per-VAI-zer" }
-    ]
-  },
-  {
-    cat: "🏥 Con los residentes / With Residents",
-    phrases: [
-      { en: "How are you feeling?", es: "¿Cómo se siente?", pron: "Jao ar yoo FIL-ing" },
-      { en: "Are you comfortable?", es: "¿Está cómodo/a?", pron: "Ar yoo COM-for-ta-bol" },
-      { en: "Do you need anything?", es: "¿Necesita algo?", pron: "Doo yoo niid EH-ni-zing" },
-      { en: "I'm here to help you.", es: "Estoy aquí para ayudarle.", pron: "Aim jir tu jelp yoo" },
-      { en: "I will call the nurse.", es: "Voy a llamar a la enfermera.", pron: "Ai wil kol de ners" },
-      { en: "Your room is clean.", es: "Su cuarto está limpio.", pron: "Yor room iz klin" },
-      { en: "Please wait a moment.", es: "Por favor espere un momento.", pron: "Pliiz weit a MO-ment" },
-      { en: "Have a wonderful day!", es: "¡Que tenga un día maravilloso!", pron: "Jav a WON-der-ful dei" }
-    ]
-  },
-  {
-    cat: "🚨 Emergencias / Emergencies",
-    phrases: [
-      { en: "Call 911!", es: "¡Llama al 911!", pron: "Kol nain-wun-wun" },
-      { en: "I need a nurse right away.", es: "Necesito una enfermera ahora mismo.", pron: "Ai niid a ners rait ah-WEI" },
-      { en: "Are you okay?", es: "¿Está bien?", pron: "Ar yoo oh-KEI" },
-      { en: "Don't move!", es: "¡No se mueva!", pron: "Dont moov" },
-      { en: "Help! Emergency!", es: "¡Ayuda! ¡Emergencia!", pron: "Jelp! Ih-MER-jen-si" }
-    ]
-  }
-];
-
 // ── LESSONS DATA ──────────────────────────────────────────
 const LESSONS = [
   {
@@ -807,6 +769,81 @@ function loadProgress() {
   try { return JSON.parse(localStorage.getItem('angie_progress') || '{}'); } catch { return {}; }
 }
 function saveProgress(p) { localStorage.setItem('angie_progress', JSON.stringify(p)); }
+// ── WORD REVEAL SENTENCES ─────────────────────────────────
+const SENTENCES = [
+  { es: "Buenos días, ¿cómo está usted?", en: ["Good", "morning,", "how", "are", "you?"] },
+  { es: "Necesito limpiar su cuarto ahora.", en: ["I", "need", "to", "clean", "your", "room", "now."] },
+  { es: "¿Le puedo traer algo de tomar?", en: ["Can", "I", "bring", "you", "something", "to", "drink?"] },
+  { es: "Por favor espere un momento.", en: ["Please", "wait", "a", "moment."] },
+  { es: "Voy a llamar a la enfermera.", en: ["I", "will", "call", "the", "nurse."] },
+  { es: "Su cuarto está limpio y listo.", en: ["Your", "room", "is", "clean", "and", "ready."] },
+  { es: "¿Necesita una cobija extra?", en: ["Do", "you", "need", "an", "extra", "blanket?"] },
+  { es: "Estoy aquí para ayudarle.", en: ["I", "am", "here", "to", "help", "you."] },
+  { es: "¿Tiene hambre o sed?", en: ["Are", "you", "hungry", "or", "thirsty?"] },
+  { es: "Que tenga un buen día.", en: ["Have", "a", "good", "day."] },
+  { es: "No entiendo, ¿puede repetir?", en: ["I", "don't", "understand,", "can", "you", "repeat?"] },
+  { es: "El desayuno está listo en el comedor.", en: ["Breakfast", "is", "ready", "in", "the", "dining", "room."] },
+  { es: "Terminé mis tareas por hoy.", en: ["I", "finished", "my", "tasks", "for", "today."] },
+  { es: "¿Le duele algo en este momento?", en: ["Does", "anything", "hurt", "right", "now?"] },
+  { es: "Voy a cambiar sus sábanas.", en: ["I", "am", "going", "to", "change", "your", "sheets."] },
+  { es: "Por favor dígame si necesita algo.", en: ["Please", "tell", "me", "if", "you", "need", "anything."] },
+  { es: "El baño está al final del pasillo.", en: ["The", "bathroom", "is", "at", "the", "end", "of", "the", "hallway."] },
+  { es: "Me llamo Angie y soy su cuidadora.", en: ["My", "name", "is", "Angie", "and", "I", "am", "your", "caregiver."] },
+  { es: "¿Está cómodo en su silla?", en: ["Are", "you", "comfortable", "in", "your", "chair?"] },
+  { es: "Que descanse bien esta noche.", en: ["Have", "a", "good", "rest", "tonight."] }
+];
+
+let wrIndex = 0, wrRevealed = 0;
+
+function renderWordReveal() {
+  const area = document.getElementById('word-reveal-area');
+  if (!area) return;
+  const s = SENTENCES[wrIndex];
+  area.innerHTML = `
+    <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:16px;padding:20px;margin-bottom:16px;text-align:center;">
+      <div style="font-size:0.75rem;color:rgba(255,255,255,0.5);margin-bottom:8px;">Oración ${wrIndex+1} de ${SENTENCES.length}</div>
+      <div style="font-size:1.15rem;font-weight:800;color:#f39c12;margin-bottom:16px;">${s.es}</div>
+      <div id="wr-words" style="font-size:1.2rem;font-weight:800;color:#0f3460;background:white;border-radius:12px;padding:16px;min-height:54px;letter-spacing:0.5px;">
+        ${wrRevealed === 0 ? '<span style="color:#aaa;font-size:0.9rem;font-weight:400;">Toca el botón para revelar la primera palabra</span>' : s.en.slice(0, wrRevealed).join(' ')}
+      </div>
+      <div style="margin-top:6px;font-size:0.78rem;color:rgba(255,255,255,0.45);">${wrRevealed} de ${s.en.length} palabras reveladas</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      ${wrRevealed < s.en.length ? `<button class="trans-btn" onclick="revealNext()">👆 Revelar siguiente palabra</button>` : `<button class="trans-btn" style="background:linear-gradient(135deg,#27ae60,#2ecc71);" onclick="speak('${s.en.join(' ')}')">🔊 Escuchar toda la oración</button>`}
+      ${wrRevealed > 0 ? `<button class="trans-btn" style="background:rgba(255,255,255,0.12);" onclick="resetReveal()">🔄 Reiniciar oración</button>` : ''}
+      ${wrRevealed === s.en.length ? `<button class="trans-btn" onclick="nextSentence()">➡️ Siguiente oración</button>` : ''}
+      ${wrIndex > 0 ? `<button class="trans-btn" style="background:rgba(255,255,255,0.08);font-size:0.85rem;" onclick="prevSentence()">← Oración anterior</button>` : ''}
+    </div>`;
+}
+
+function revealNext() {
+  const s = SENTENCES[wrIndex];
+  if (wrRevealed < s.en.length) { wrRevealed++; renderWordReveal(); }
+}
+function resetReveal() { wrRevealed = 0; renderWordReveal(); }
+function nextSentence() {
+  if (wrIndex < SENTENCES.length - 1) { wrIndex++; wrRevealed = 0; renderWordReveal(); }
+  else {
+    document.getElementById('word-reveal-area').innerHTML = `
+      <div style="background:rgba(255,255,255,0.97);color:#1a1a2e;border-radius:18px;padding:30px 20px;text-align:center;">
+        <div style="font-size:2rem;">🎉</div>
+        <h2 style="font-size:1.4rem;font-weight:900;color:#0f3460;margin:10px 0;">¡Completaste todas las oraciones!</h2>
+        <p style="color:#555;margin-bottom:20px;">You finished all the sentences!</p>
+        <button class="trans-btn" onclick="wrIndex=0;wrRevealed=0;renderWordReveal();">🔄 Empezar de nuevo</button>
+      </div>`;
+  }
+}
+function prevSentence() { if (wrIndex > 0) { wrIndex--; wrRevealed = 0; renderWordReveal(); } }
+
+// ── STATE ─────────────────────────────────────────────────
+let currentLesson = null, currentTab = 'learn';
+let quizIndex = 0, quizScore = 0, quizAnswered = false;
+let transDir = 'es-en';
+
+function loadProgress() {
+  try { return JSON.parse(localStorage.getItem('angie_progress') || '{}'); } catch { return {}; }
+}
+function saveProgress(p) { localStorage.setItem('angie_progress', JSON.stringify(p)); }
 function loadFavs() {
   try { return JSON.parse(localStorage.getItem('angie_favs') || '[]'); } catch { return []; }
 }
@@ -814,11 +851,13 @@ function saveFavs(f) { localStorage.setItem('angie_favs', JSON.stringify(f)); }
 
 // ── SCREEN ROUTING ────────────────────────────────────────
 function showScreen(name) {
-  ['home','translator','sentences','lesson','daily','favorites'].forEach(s => {
-    document.getElementById('screen-' + s).style.display = 'none';
+  ['home','translator','sentences','lessons','lesson','daily','favorites'].forEach(s => {
+    const el = document.getElementById('screen-' + s);
+    if (el) el.style.display = 'none';
   });
   document.getElementById('screen-' + name).style.display = 'block';
-  if (name === 'sentences') renderLessonList();
+  if (name === 'sentences') { wrRevealed = 0; renderWordReveal(); }
+  if (name === 'lessons') renderLessonList();
   if (name === 'daily') renderDaily();
   if (name === 'favorites') renderFavorites();
   window.scrollTo(0,0);
@@ -982,7 +1021,7 @@ function renderQuiz() {
         <p>${quizScore} de ${currentLesson.quiz.length} correctas</p>
         <p class="${passed?'pass-msg':'fail-msg'}">${passed ? '✅ ¡Lección completada! Siguiente lección desbloqueada.' : '❌ Necesitas 70% para continuar. ¡Tú puedes!'}</p>
         <button class="next-btn" style="margin-top:16px;" onclick="setTab('quiz')">${passed ? '🔄 Repasar' : '🔄 Intentar de nuevo'}</button>
-        ${passed ? `<button class="next-btn" style="margin-top:10px;background:linear-gradient(135deg,#27ae60,#2ecc71);" onclick="showScreen('sentences')">📝 Ver lecciones</button>` : ''}
+        ${passed ? `<button class="next-btn" style="margin-top:10px;background:linear-gradient(135deg,#27ae60,#2ecc71);" onclick="showScreen('lessons')">📝 Ver lecciones</button>` : ''}
       </div>`;
     return;
   }
@@ -1089,5 +1128,6 @@ function removeFav(idx) {
 // ── INIT ──────────────────────────────────────────────────
 showScreen('home');
 </script>
+
 </body>
 </html>
