@@ -529,7 +529,8 @@ function initWordReveal() {
   drawWordReveal();
 }
 
-function speakWord(word) {
+function speakWord(idx) {
+  var word = SENTENCES[wrIdx].en[idx];
   window.speechSynthesis.cancel();
   var u = new SpeechSynthesisUtterance(word);
   u.lang = 'en-US'; u.rate = 0.75;
@@ -540,14 +541,14 @@ function drawWordReveal() {
   var area = document.getElementById('wr-area');
   var s = SENTENCES[wrIdx];
 
-  // Build revealed words as individual tappable chips
+  // Build revealed words as individual tappable chips using index (no string in onclick)
   var wordsHtml = '';
   if (wrRevealed === 0) {
     wordsHtml = '<span style="color:#aaa;font-size:0.9rem;font-weight:400;">Toca el botón para ver la primera palabra</span>';
   } else {
     for (var i = 0; i < wrRevealed; i++) {
       var w = s.en[i];
-      wordsHtml += '<button onclick="speakWord('' + w.replace(/'/g,"\'") + '')" style="' +
+      wordsHtml += '<button onclick="speakWord(' + i + ')" style="' +
         'display:inline-block;margin:4px 3px;padding:8px 14px;' +
         'background:linear-gradient(135deg,#0f3460,#533483);color:white;' +
         'border:none;border-radius:20px;font-size:1rem;font-weight:800;cursor:pointer;">' +
