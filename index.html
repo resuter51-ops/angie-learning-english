@@ -271,7 +271,7 @@ body {
     <div class="trans-box">
       <label id="trans-label-in">Escribe en español:</label>
       <textarea id="trans-input" placeholder="Escribe aquí..." rows="3"></textarea>
-      <button class="trans-btn" onclick="doTranslate()">🔄 Traducir</button>
+      <div style="display:flex;gap:8px;"><button class="trans-btn" onclick="doTranslate()">🔄 Traducir</button><button class="trans-btn" style="background:rgba(255,255,255,0.15);flex:0 0 auto;width:auto;padding:14px 20px;" onclick="clearTranslator()">🗑️ Borrar</button></div>
       <label style="margin-top:14px;" id="trans-label-out">Traducción en inglés:</label>
       <div class="trans-result" id="trans-result">—</div>
       <button class="speak-btn" style="margin-top:10px;" onclick="speakResult()">🔊 Escuchar</button>
@@ -858,6 +858,12 @@ async function doTranslate() {
   } catch(e) {
     result.textContent = '❌ Error. Intenta de nuevo.';
   }
+}
+
+function clearTranslator() {
+  document.getElementById("trans-input").value = "";
+  document.getElementById("trans-result").textContent = "—";
+  document.getElementById("trans-input").focus();
 }
 
 function speakResult() {
