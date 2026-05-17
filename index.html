@@ -308,7 +308,8 @@ body {
     <div class="trans-box">
       <label id="lbl-in">Escribe en español:</label>
       <textarea id="trans-input" placeholder="Escribe aquí..." rows="3"></textarea>
-      <div class="btn-row">
+      <button id="mic-btn" class="ghost-btn" style="width:100%;margin-top:8px;font-size:1rem;" onclick="toggleMic()">🎤 Hablar</button>
+      <div class="btn-row" style="margin-top:8px;">
         <button class="big-btn" onclick="doTranslate()">🔄 Traducir</button>
         <button class="ghost-btn" onclick="clearTrans()">🗑️ Borrar</button>
       </div>
@@ -436,6 +437,56 @@ function speakResult() {
   u.lang = transDir === 'es' ? 'en-US' : 'es-ES';
   u.rate = 0.85;
   window.speechSynthesis.speak(u);
+}
+
+
+// ══════════════════════════════════════════════
+// MICROPHONE / SPEECH INPUT
+// ══════════════════════════════════════════════
+var micRecog = null, micActive = false;
+
+function toggleMic() {
+  if (micActive) {
+    stopMic();
+  } else {
+    startMic();
+  }
+}
+
+function startMic() {
+  var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) {
+    alert('Tu navegador no soporta voz. Usa Chrome o Safari.');
+    return;
+  }
+  micRecog = new SpeechRecognition();
+  micRecog.lang = transDir === 'es' ? 'es-ES' : 'en-US';
+  micRecog.continuous = false;
+  micRecog.interimResults = false;
+
+  micRecog.onstart = function() {
+    micActive = true;
+    var btn = document.getElementById('mic-btn');
+    if (btn) { btn.textContent = '⏹️ Detener'; btn.style.background = 'rgba(231,76,60,0.4)'; btn.style.borderColor = '#e74c3c'; }
+  };
+
+  micRecog.onresult = function(e) {
+    var transcript = e.results[0][0].transcript;
+    document.getElementById('trans-input').value = transcript;
+    stopMic();
+    doTranslate();
+  };
+
+  micRecog.onerror = function() { stopMic(); };
+  micRecog.onend   = function() { stopMic(); };
+  micRecog.start();
+}
+
+function stopMic() {
+  micActive = false;
+  if (micRecog) { try { micRecog.stop(); } catch(e){} micRecog = null; }
+  var btn = document.getElementById('mic-btn');
+  if (btn) { btn.textContent = '🎤 Hablar'; btn.style.background = ''; btn.style.borderColor = ''; }
 }
 
 // ══════════════════════════════════════════════
