@@ -529,12 +529,31 @@ function initWordReveal() {
   drawWordReveal();
 }
 
+function speakWord(word) {
+  window.speechSynthesis.cancel();
+  var u = new SpeechSynthesisUtterance(word);
+  u.lang = 'en-US'; u.rate = 0.75;
+  window.speechSynthesis.speak(u);
+}
+
 function drawWordReveal() {
   var area = document.getElementById('wr-area');
   var s = SENTENCES[wrIdx];
-  var englishText = wrRevealed === 0
-    ? '<span style="color:#aaa;font-size:0.9rem;font-weight:400;">Toca el botón para ver la primera palabra</span>'
-    : s.en.slice(0, wrRevealed).join(' ');
+
+  // Build revealed words as individual tappable chips
+  var wordsHtml = '';
+  if (wrRevealed === 0) {
+    wordsHtml = '<span style="color:#aaa;font-size:0.9rem;font-weight:400;">Toca el botón para ver la primera palabra</span>';
+  } else {
+    for (var i = 0; i < wrRevealed; i++) {
+      var w = s.en[i];
+      wordsHtml += '<button onclick="speakWord('' + w.replace(/'/g,"\'") + '')" style="' +
+        'display:inline-block;margin:4px 3px;padding:8px 14px;' +
+        'background:linear-gradient(135deg,#0f3460,#533483);color:white;' +
+        'border:none;border-radius:20px;font-size:1rem;font-weight:800;cursor:pointer;">' +
+        w + ' 🔊</button>';
+    }
+  }
 
   var btns = '';
   if (wrRevealed < s.en.length) {
@@ -542,9 +561,9 @@ function drawWordReveal() {
   } else {
     btns += '<button class="wr-btn green" onclick="speakSentence()">🔊 Escuchar oración completa</button>';
     if (wrIdx < SENTENCES.length - 1) {
-      btns += '<button class="wr-btn" onclick="nextSentence()" style="margin-top:0;">➡️ Siguiente oración</button>';
+      btns += '<button class="wr-btn" onclick="nextSentence()">➡️ Siguiente oración</button>';
     } else {
-      btns += '<button class="wr-btn green" onclick="initWordReveal()" style="margin-top:0;">🔄 Empezar de nuevo</button>';
+      btns += '<button class="wr-btn green" onclick="initWordReveal()">🔄 Empezar de nuevo</button>';
     }
   }
   if (wrRevealed > 0) {
@@ -558,13 +577,22 @@ function drawWordReveal() {
     '<div class="wr-card">' +
       '<div class="wr-count">Oración ' + (wrIdx + 1) + ' de ' + SENTENCES.length + '</div>' +
       '<div class="wr-spanish">' + s.es + '</div>' +
-      '<div class="wr-english">' + englishText + '</div>' +
+      '<div class="wr-english" style="line-height:2.2;">' + wordsHtml + '</div>' +
       '<div class="wr-hint">' + wrRevealed + ' de ' + s.en.length + ' palabras reveladas</div>' +
     '</div>' +
     '<div class="wr-buttons">' + btns + '</div>';
 }
 
-function revealWord()    { wrRevealed++; drawWordReveal(); }
+function revealWord() {
+  wrRevealed++;
+  drawWordReveal();
+  // Auto-speak the newly revealed word
+  var word = SENTENCES[wrIdx].en[wrRevealed - 1];
+  window.speechSynthesis.cancel();
+  var u = new SpeechSynthesisUtterance(word);
+  u.lang = 'en-US'; u.rate = 0.75;
+  window.speechSynthesis.speak(u);
+}
 function resetSentence() { wrRevealed = 0; drawWordReveal(); }
 function nextSentence()  { wrIdx++; wrRevealed = 0; drawWordReveal(); }
 function prevSentence()  { wrIdx--; wrRevealed = 0; drawWordReveal(); }
