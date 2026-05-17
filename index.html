@@ -424,6 +424,7 @@ async function doTranslate() {
     for (var i = 0; i < input.length; i += 400) chunks.push(input.slice(i, i + 400));
     var parts = await Promise.all(chunks.map(function(c){ return translateChunk(c, from, to); }));
     box.textContent = parts.join(' ');
+    speakResult();
   } catch(e) {
     box.textContent = '❌ Error. Intenta de nuevo.';
   }
