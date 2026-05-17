@@ -412,22 +412,28 @@ async function translateChunk(text, from, to) {
   throw new Error('fail');
 }
 
-async function doTranslate() {
+function doTranslate() {
   var input = document.getElementById('trans-input').value.trim();
   var box = document.getElementById('trans-result');
   if (!input) { box.textContent = '—'; return; }
   box.textContent = '⏳ Traduciendo...';
-  try {
-    var from = transDir === 'es' ? 'es' : 'en';
-    var to   = transDir === 'es' ? 'en' : 'es';
-    var chunks = [];
-    for (var i = 0; i < input.length; i += 400) chunks.push(input.slice(i, i + 400));
-    var parts = await Promise.all(chunks.map(function(c){ return translateChunk(c, from, to); }));
-    box.textContent = parts.join(' ');
-    speakResult();
-  } catch(e) {
-    box.textContent = '❌ Error. Intenta de nuevo.';
-  }
+  var from = transDir === 'es' ? 'es' : 'en';
+  var to   = transDir === 'es' ? 'en' : 'es';
+  var chunks = [];
+  for (var i = 0; i < input.length; i += 400) chunks.push(input.slice(i, i + 400));
+  Promise.all(chunks.map(function(c){ return translateChunk(c, from, to); }))
+    .then(function(parts) {
+      var result = parts.join(' ');
+      box.textContent = result;
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(result);
+      u.lang = transDir === 'es' ? 'en-US' : 'es-ES';
+      u.rate = 0.85;
+      window.speechSynthesis.speak(u);
+    })
+    .catch(function() {
+      box.textContent = '❌ Error. Intenta de nuevo.';
+    });
 }
 
 function speakResult() {
